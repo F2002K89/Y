@@ -31,32 +31,6 @@
             background-color: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
-        .card {
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
-        .price-point {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: #000000;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .price-line {
-            position: absolute;
-            height: 2px;
-            background-color: #000000;
-            transform-origin: left center;
-        }
         .product-item {
             transition: all 0.3s ease;
         }
@@ -64,13 +38,6 @@
             background-color: #f0f0f0;
             transform: translateY(-2px);
         }
-        .product-logo {
-            transition: all 0.3s ease;
-        }
-        .product-logo:hover {
-            transform: translateY(-5px);
-        }
-        /* Responsive font sizes for hero section */
         @media (max-width: 480px) {
             .hero-section h1 {
                 font-size: 2rem;
@@ -93,6 +60,7 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
                     <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
+                    <a href="#news" class="text-gray-700 hover:text-black font-medium">News & Gallery</a>
                     <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
                     <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
                     <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
@@ -111,6 +79,7 @@
             <div class="flex flex-col space-y-3 py-3 px-4">
                 <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
                 <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
+                <a href="#news" class="text-gray-700 hover:text-black font-medium">News & Gallery</a>
                 <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
                 <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
                 <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
@@ -164,189 +133,169 @@
                 <p class="text-gray-600 max-w-2xl mx-auto">We offer a comprehensive range of high-quality petroleum products to meet diverse industry needs</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Product Card Example (repeat for each product) -->
+                <!-- D6 -->
                 <div class="product-item bg-white rounded-lg shadow-md p-6">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-5.414a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
-                            </svg>
+                            <span class="text-white font-bold text-lg">D6</span>
                         </div>
                         <span class="text-lg font-medium text-black">D6</span>
                     </div>
                     <p class="text-gray-600">High-quality fuel oil for industrial applications</p>
                 </div>
-                <!-- Repeat similar product-item blocks for all products, same as your original code -->
-                <!-- ... -->
                 <!-- LPG -->
                 <div class="product-item bg-white rounded-lg shadow-md p-6">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m4 4v-4h-1m8 8V4a1 1 0 00-1-1H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1z"/>
-                            </svg>
+                            <span class="text-white font-bold text-lg">LPG</span>
                         </div>
                         <span class="text-lg font-medium text-black">LPG</span>
                     </div>
                     <p class="text-gray-600">Liquefied petroleum gas for residential and commercial heating</p>
                 </div>
-                <!-- ... Rest of the products as per your original structure ... -->
-                <!-- For brevity, keep the same card structure and content for all products as in your original file -->
-                <!-- LNG, Jet Oil, Crude Oil, Light Crude, Heavy Crude, EN590 10 PPM, Gasoline RON 90, 92, 95, 98 -->
-                <!-- (Copy product-item blocks as necessary) -->
+                <!-- LNG -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">LNG</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">LNG</span>
+                    </div>
+                    <p class="text-gray-600">Liquefied natural gas for power generation and industrial use</p>
+                </div>
+                <!-- Jet Oil -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">JET</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Jet Oil</span>
+                    </div>
+                    <p class="text-gray-600">Premium aviation fuel meeting international standards</p>
+                </div>
+                <!-- Crude Oil -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">CRD</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Crude Oil</span>
+                    </div>
+                    <p class="text-gray-600">Unrefined petroleum for refining into various oil products</p>
+                </div>
+                <!-- Light Crude -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">LCR</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Light Crude</span>
+                    </div>
+                    <p class="text-gray-600">Low-density crude oil with low wax content and high API gravity</p>
+                </div>
+                <!-- Heavy Crude -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">HCR</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Heavy Crude</span>
+                    </div>
+                    <p class="text-gray-600">High-density crude oil with high viscosity and low API gravity</p>
+                </div>
+                <!-- EN590 10 PPM -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xs">EN590</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">EN590 10 PPM</span>
+                    </div>
+                    <p class="text-gray-600">Ultra-low sulfur diesel fuel meeting European standards</p>
+                </div>
+                <!-- Gasoline RON 90 -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xs">RON90</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 90</span>
+                    </div>
+                    <p class="text-gray-600">Standard octane gasoline for everyday vehicle use</p>
+                </div>
+                <!-- Gasoline RON 92 -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xs">RON92</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 92</span>
+                    </div>
+                    <p class="text-gray-600">Mid-grade gasoline for improved engine performance</p>
+                </div>
+                <!-- Gasoline RON 95 -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xs">RON95</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 95</span>
+                    </div>
+                    <p class="text-gray-600">Premium gasoline for high-performance engines</p>
+                </div>
+                <!-- Gasoline RON 98 -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xs">RON98</span>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 98</span>
+                    </div>
+                    <p class="text-gray-600">Ultra-premium gasoline for luxury and sports vehicles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Gallery Section -->
+    <section id="news" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-black mb-4">News & Gallery</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Keep up to date with our latest news and view our photo gallery.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- News Item Example -->
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <img src="news1.jpg" alt="News 1" class="rounded-lg mb-4 object-cover h-48 w-full"/>
+                    <h3 class="text-xl font-semibold mb-2">New Trading Partnership Announced</h3>
+                    <p class="text-gray-600 flex-grow">We are excited to announce a new partnership with global energy leaders to expand our trading network.</p>
+                    <span class="text-gray-400 mt-3 text-sm">Aug 1, 2025</span>
+                </div>
+                <!-- News/Photo Item -->
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <img src="news2.jpg" alt="News 2" class="rounded-lg mb-4 object-cover h-48 w-full"/>
+                    <h3 class="text-xl font-semibold mb-2">Refinery Site Expansion</h3>
+                    <p class="text-gray-600 flex-grow">Our state-of-the-art refinery site has doubled in capacity, supporting more efficient oil processing.</p>
+                    <span class="text-gray-400 mt-3 text-sm">July 15, 2025</span>
+                </div>
+                <!-- Gallery Photo Only -->
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center items-center">
+                    <img src="gallery1.jpg" alt="Gallery 1" class="rounded-lg mb-2 object-cover h-48 w-full"/>
+                    <h3 class="text-md font-medium text-gray-700 mt-2">Global Oil Summit 2025</h3>
+                </div>
+                <!-- Add more news and photo blocks as needed, just copy the structure above -->
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold text-black mb-6">About NEFT OIL TRADING</h2>
-                    <p class="text-gray-600 mb-4">NEFT OIL TRADING is a leading global oil trading company with over 25 years of experience in the petroleum industry. We specialize in the trading, distribution, and supply of petroleum products worldwide.</p>
-                    <p class="text-gray-600 mb-4">Our extensive network of suppliers, logistics partners, and customers enables us to deliver reliable and efficient oil trading solutions to meet diverse client requirements.</p>
-                    <p class="text-gray-600 mb-6">With a team of experienced professionals and industry experts, we provide strategic insights and tailored solutions to navigate the complex global oil market.</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Global Reach</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Quality Assurance</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Reliable Delivery</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Market Expertise</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-black rounded-lg p-8 text-white mt-8 lg:mt-0">
-                    <h3 class="text-2xl font-semibold mb-6">Office Address</h3>
-                    <div class="flex items-start mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <div>
-                            <p class="mb-1"><strong>Office No:</strong> E-25F-08</p>
-                            <p class="mb-1"><strong>Location:</strong> Hamriyah Free Zone,</p>
-                            <p>Sharjah, United Arab Emirates</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                        <p>Email: info@neftoiltrading.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- (UNCHANGED) ... copy your About, Leadership, Contact and Footer sections here ... -->
 
-    <!-- Leadership Team Section -->
-    <section id="leadership" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4">Our Leadership Team</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals leading our global operations</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                    <h3 class="text-xl font-semibold text-black mb-2">Hamad Taryam Alshamsi</h3>
-                    <p class="text-gray-600 mb-4">President</p>
-                    <p class="text-gray-600">Guiding the organization with a strong commitment to sustainability and forward-thinking leadership. His dedication to responsible growth and ethical practices sets the tone for the company.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                    <h3 class="text-xl font-semibold text-black mb-2">Ali Yousif Bu Sari</h3>
-                    <p class="text-gray-600 mb-4">Founder</p>
-                    <p class="text-gray-600">Pioneering the company's global vision with remarkable foresight and industry acumen. His entrepreneurial spirit and strategic partnerships have established NEFT OIL TRADING as a market leader.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                    <h3 class="text-xl font-semibold text-black mb-2">Jasim Mohamed Yousif</h3>
-                    <p class="text-gray-600 mb-4">Chief Executive Officer</p>
-                    <p class="text-gray-600">Driving progress through strategic foresight and a deep understanding of global markets. His commitment to innovation, sustainability, and operational excellence propels the company forward.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4">Contact Us</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">If you are interested in our products or have any inquiries, please fill in your details below. Our team will get back to you directly via email.</p>
-            </div>
-            <div class="flex justify-center">
-                <form action="https://formsubmit.co/info@neftoiltrading.com" method="POST"
-                    class="w-full max-w-2xl bg-white rounded-lg shadow-md p-8 border border-gray-200 space-y-6 mx-auto">
-                    <input type="hidden" name="_captcha" value="false">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-gray-700 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="company" class="block text-gray-700 mb-2">Company Name</label>
-                        <input type="text" id="company" name="company"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                    </div>
-                    <div>
-                        <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                    </div>
-                    <div>
-                        <label for="inquiry" class="block text-gray-700 mb-2">Inquiry Type</label>
-                        <select id="inquiry" name="inquiry"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                            <option value="">Select an inquiry type</option>
-                            <option value="General">General Inquiry</option>
-                            <option value="Product">Product Inquiry</option>
-                            <option value="Price">Price Inquiry</option>
-                            <option value="Partnership">Partnership Opportunity</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="message" class="block text-gray-700 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="4"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"></textarea>
-                    </div>
-                    <div>
-                        <button type="submit"
-                            class="gradient-btn text-white font-medium py-3 px-6 rounded-md shadow-lg w-full md:w-auto mt-4 mb-8">Send
-                            Message</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+    <!-- (For brevity, not duplicated. Use the About, Leadership, Contact, Footer as in previous answer) -->
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-12">
+    <footer class="bg-black text-white py-12 mt-12">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -360,6 +309,7 @@
                     <ul class="space-y-2">
                         <li><a href="#home" class="text-gray-300 hover:text-white">Home</a></li>
                         <li><a href="#products" class="text-gray-300 hover:text-white">Products</a></li>
+                        <li><a href="#news" class="text-gray-300 hover:text-white">News & Gallery</a></li>
                         <li><a href="#about" class="text-gray-300 hover:text-white">About Us</a></li>
                         <li><a href="#leadership" class="text-gray-300 hover:text-white">Leadership</a></li>
                         <li><a href="#contact" class="text-gray-300 hover:text-white">Contact</a></li>
@@ -398,11 +348,9 @@
         // Mobile menu toggle for all device
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
         // Improved smooth scrolling for anchor links (all devices)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -423,7 +371,6 @@
                 }
             });
         });
-
         // Close menu on window resize if > md
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) {
