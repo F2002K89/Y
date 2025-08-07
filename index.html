@@ -5,96 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEFT OIL TRADING</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+      <link rel="icon" href="Untitled design.svg" type="image/x-icon">
     <style>
         body {
-           <script>
-window.addEventListener('scroll', function() {
-    const hero = document.querySelector('.hero-section');
-    const scrollY = window.scrollY || window.pageYOffset;
-    if (scrollY > hero.offsetHeight - 80) { // Adjust 80 if your nav is taller/shorter
-        hero.style.background = "linear-gradient(120deg,#003366,#006699)";
-    } else {
-        hero.style.background = "linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('backgrounds.jpg')";
-        hero.style.backgroundSize = "cover";
-        hero.style.backgroundPosition = "center";
-    }
-});
-</script>
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        /* Keyframes for entrance animations */
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(30px);}
-            100% { opacity: 1; transform: translateY(0);}
-        }
-        @keyframes fadeIn {
-            from { opacity: 0;}
-            to { opacity: 1;}
-        }
-        @keyframes scaleIn {
-            from { transform: scale(0.96); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .animate-fadeInUp {
-            animation: fadeInUp 1s cubic-bezier(.39,.575,.565,1.000) both;
-        }
-        .animate-fadeIn {
-            animation: fadeIn 1s ease-in both;
-        }
-        .animate-scaleIn {
-            animation: scaleIn 0.8s cubic-bezier(.39,.575,.565,1.000) both;
-        }
-
-        /* Stagger children animation */
-        .animated-stagger > * {
-            opacity: 0;
-            animation: fadeInUp 0.9s cubic-bezier(.39,.575,.565,1.000) both;
-        }
-        .animated-stagger > *:nth-child(1) { animation-delay: 0.1s;}
-        .animated-stagger > *:nth-child(2) { animation-delay: 0.2s;}
-        .animated-stagger > *:nth-child(3) { animation-delay: 0.3s;}
-        .animated-stagger > *:nth-child(4) { animation-delay: 0.4s;}
-        .animated-stagger > *:nth-child(5) { animation-delay: 0.5s;}
-        .animated-stagger > *:nth-child(6) { animation-delay: 0.6s;}
-        .animated-stagger > *:nth-child(7) { animation-delay: 0.7s;}
-        .animated-stagger > *:nth-child(8) { animation-delay: 0.8s;}
-        .animated-stagger > *:nth-child(9) { animation-delay: 0.9s;}
-        .animated-stagger > *:nth-child(10) { animation-delay: 1s;}
-
-        /* Existing styles unchanged */
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                    url('backgrounds.jpg');
-            background-size: cover;
-            background-position: center;
+        .<style>
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+</style>
+<section id="home" class="hero-section min-h-screen flex items-center pt-16 relative overflow-hidden">
+  <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0" id="bg-video">
+    <source src="your-video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 z-10"></div>
+  <div class="container mx-auto px-4 relative z-20">
+    <div class="max-w-4xl mx-auto text-center text-white">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Energy Solutions for a Changing World</h1>
+      <p class="text-xl md:text-2xl mb-10 leading-relaxed">Powering Progress Through Strategic Energy Trading</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <a href="#products" class="gradient-btn text-white font-semibold py-4 px-10 rounded-md shadow-lg text-lg">Discover More</a>
+        <a href="#contact" class="outline-btn border-2 border-white text-white font-semibold py-4 px-10 rounded-md text-lg hover:bg-white hover:text-black transition duration-300">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
         }
         .gradient-btn {
-            background: linear-gradient(90deg, #222212 0%, #000000 100%);
+            background: linear-gradient(90deg, #222222 0%, #000000 100%);
             transition: all 0.3s ease;
         }
         .gradient-btn:hover {
-            background: linear-gradient(90deg, #000000 0%, #222212 100%);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
+            background: linear-gradient(90deg, #000000 0%, #222222 100%);
+            transform: translateY(-2px);
         }
         .outline-btn {
             transition: all 0.3s ease;
         }
         .outline-btn:hover {
-            background-color: rgba(255,255,255,0.1);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 4px 16px -2px rgba(0,0,0,0.14);
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
-        .card, .product-item, .bg-white.rounded-lg.shadow-md.overflow-hidden.p-6 {
+        .card {
             transition: all 0.3s ease;
         }
-        .card:hover,
-        .product-item:hover,
-        .bg-white.rounded-lg.shadow-md.overflow-hidden.p-6:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.13);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
         .chart-container {
             position: relative;
@@ -115,226 +76,313 @@ window.addEventListener('scroll', function() {
             background-color: #000000;
             transform-origin: left center;
         }
+        .product-item {
+            transition: all 0.3s ease;
+        }
+        .product-item:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
         .product-logo {
             transition: all 0.3s ease;
         }
         .product-logo:hover {
-            transform: translateY(-5px) scale(1.15);
-            filter: drop-shadow(0 2px 8px #2222);
-        }
-        .gallery-image {
-            transition: all 0.5s cubic-bezier(.39,.575,.565,1.000);
-        }
-        .gallery-image:hover {
-            transform: scale(1.08) rotate(-2deg);
-            box-shadow: 0 8px 32px -6px rgba(0,0,0,0.12);
-        }
-        /* Animated input fields */
-        .animated-input {
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-        .animated-input:focus {
-            box-shadow: 0 0 0 3px #00000033;
-            transform: scale(1.03);
-        }
-        /* Animate footer links */
-        .footer-link {
-            transition: color 0.2s, transform 0.3s;
-        }
-        .footer-link:hover {
-            color: #fff;
-            transform: translateY(-2px) scale(1.08);
-        }
-        /* Animate nav links */
-        .nav-link {
-            transition: color 0.2s, transform 0.3s;
-        }
-        .nav-link:hover {
-            color: #000;
-            transform: scale(1.1);
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-10 animate-fadeInUp">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <img src="logo.png" alt="Logo" class="h-10 w-auto mr-2 product-logo" />
-                    <span class="text-2xl font-bold text-black">NEFT OIL TRADING</span>
-                </div>
+    <nav class="bg-white shadow-md fixed w-full z-10">
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo.png" alt="Logo" class="h-10 w-auto mr-2" />
+                <span class="text-2xl font-bold text-black">NEFT OIL TRADING</span>
+            </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-black font-medium">Home</a>
-                    <a href="#products" class="nav-link text-gray-700 hover:text-black font-medium">Products</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-black font-medium">About Us</a>
-                    <a href="#leadership" class="nav-link text-gray-700 hover:text-black font-medium">Leadership</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-black font-medium">Contact</a>
+                    <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
+                    <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
+                    <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
+                    <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
+                    <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none nav-link">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16"></path>
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
             <div id="mobile-menu" class="md:hidden hidden">
                 <div class="flex flex-col space-y-3 py-3">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-black font-medium">Home</a>
-                    <a href="#products" class="nav-link text-gray-700 hover:text-black font-medium">Products</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-black font-medium">About Us</a>
-                    <a href="#leadership" class="nav-link text-gray-700 hover:text-black font-medium">Leadership</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-black font-medium">Contact</a>
+                    <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
+                    <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
+                    <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
+                    <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
+                    <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section min-h-screen flex items-center pt-16 animate-fadeInUp">
+    <section id="home" class="hero-section min-h-screen flex items-center pt-16">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center text-white animate-fadeInUp">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fadeInUp">Global Energy Solutions for a Changing World</h1>
-                <p class="text-xl md:text-2xl mb-10 leading-relaxed animate-fadeInUp">Powering Progress Through Strategic Energy Trading</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-6 animated-stagger">
-                    <a href="#products" class="gradient-btn text-white font-semibold py-4 px-10 rounded-md shadow-lg text-lg animate-scaleIn">Discover More</a>
-                    <a href="#contact" class="outline-btn border-2 border-white text-white font-semibold py-4 px-10 rounded-md text-lg hover:bg-white hover:text-black transition duration-300 animate-scaleIn">Contact Us</a>
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Energy Solutions for a Changing World</h1>
+                <p class="text-xl md:text-2xl mb-10 leading-relaxed">Powering Progress Through Strategic Energy Trading</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#products" class="gradient-btn text-white font-semibold py-4 px-10 rounded-md shadow-lg text-lg">Discover More</a>
+                    <a href="#contact" class="outline-btn border-2 border-white text-white font-semibold py-4 px-10 rounded-md text-lg hover:bg-white hover:text-black transition duration-300">Contact Us</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="py-12 bg-gray-100 animate-fadeInUp">
+    <section class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center animated-stagger">
-                <div class="p-6 animate-scaleIn">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6">
                     <div class="text-3xl font-bold text-black mb-2">25+</div>
                     <div class="text-gray-600">Years Experience</div>
                 </div>
-                <div class="p-6 animate-scaleIn">
+                <div class="p-6">
                     <div class="text-3xl font-bold text-black mb-2">50+</div>
                     <div class="text-gray-600">Global Partners</div>
                 </div>
-                <div class="p-6 animate-scaleIn">
+                <div class="p-6">
                     <div class="text-3xl font-bold text-black mb-2">1M+</div>
                     <div class="text-gray-600">Barrels Traded</div>
                 </div>
-                <div class="p-6 animate-scaleIn">
+                <div class="p-6">
                     <div class="text-3xl font-bold text-black mb-2">30+</div>
                     <div class="text-gray-600">Countries Served</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- News & Gallery Section -->
-    <section id="news" class="py-16 bg-white animate-fadeInUp">
+ <!-- News & Gallery Section -->
+    <section id="news" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4 animate-fadeInUp">News & Gallery</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto animate-fadeInUp">Latest updates and gallery.</p>
+                <h2 class="text-3xl font-bold text-black mb-4">News & Gallery</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Latest updates and gallery.</p>
             </div>
-            <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 animated-stagger">
+            <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 <!-- LinkedIn Article Example -->
-                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col card animate-scaleIn">
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col">
                     <a href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/?trackingId=kn%2BsOS2EYwvphtfBA0YfpQ%3D%3D" target="_blank">
-                        <img src="LINKEDIN.jpg" alt="Article 1" class="gallery-image w-full h-48 object-cover animate-fadeInUp">
+                        <img src="profile.jpg" alt="Article 1" class="w-full h-48 object-cover">
                     </a>
                     <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-xl font-semibold mb-2 animate-fadeInUp">
-                            <a href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/?trackingId=kn%2BsOS2EYwvphtfBA0YfpQ%3D%3D" target="_blank" class="hover:underline">The Neft Oil Trading Journey</a>
-                        </h3>
-                        <p class="text-gray-600 flex-1 animate-fadeInUp">The Neft Oil Trading Journey.</p>
-                        <span class="text-gray-400 text-xs mt-3 animate-fadeInUp">LinkedIn Article</span>
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/?trackingId=kn%2BsOS2EYwvphtfBA0YfpQ%3D%3D" target="_blank" class="hover:underline">Fueling Global Progress with Integrity</a></h3>
+                        <p class="text-gray-600 flex-1">The Neft Oil Trading Journey.</p>
+                        <span class="text-gray-400 text-xs mt-3">LinkedIn Article</span>
                     </div>
                 </div>
-                <!-- Article Example -->
-                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col card animate-scaleIn">
+              <!-- Article Example -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col">
                     <a href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank">
-                        <img src="Port-of-Fujairah.jpg" alt="Article 1" class="gallery-image w-full h-48 object-cover animate-fadeInUp">
+                        <img src="Port-of-Fujairah.jpg" alt="Article 1" class="w-full h-48 object-cover">
                     </a>
                     <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-xl font-semibold mb-2 animate-fadeInUp">
-                            <a href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank" class="hover:underline">Why Fujairah's Port Expansion Could Transform UAE's Oil Trade</a>
-                        </h3>
-                        <p class="text-gray-600 flex-1 animate-fadeInUp">The Vision Behind the Expansion.</p>
-                        <span class="text-gray-400 text-xs mt-3 animate-fadeInUp">Article</span>
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank" class="hover:underline">Why Fujairah’s Port Expansion Could Transform UAE’s Economy</a></h3>
+                        <p class="text-gray-600 flex-1">The Vision Behind the Expansion.</p>
+                        <span class="text-gray-400 text-xs mt-3">Article</span>
                     </div>
                 </div>
                 <!-- Article Example -->
-                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col card animate-scaleIn">
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col">
                     <a href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank">
-                        <img src="12 Major U.S Oil Terminals.jpg" alt="Article 1" class="gallery-image w-full h-48 object-cover animate-fadeInUp">
+                        <img src="photous1.jpg" alt="Article 1" class="w-full h-48 object-cover">
                     </a>
                     <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-xl font-semibold mb-2 animate-fadeInUp">
-                            <a href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank" class="hover:underline">12 Major U.S Oil Terminals</a>
-                        </h3>
-                        <p class="text-gray-600 flex-1 animate-fadeInUp">Top Locations U.S. Oil Storage and Distribution.</p>
-                        <span class="text-gray-400 text-xs mt-3 animate-fadeInUp">Article</span>
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank" class="hover:underline">12 Major U.S Oil Terminals</a></h3>
+                        <p class="text-gray-600 flex-1">Top Locations U.S. Oil Storage and Distribution.</p>
+                        <span class="text-gray-400 text-xs mt-3">Article</span>
                     </div>
                 </div>
+                <!-- Add more LinkedIn or photo blocks as needed -->
             </div>
         </div>
     </section>
-
     <!-- Products Section -->
-    <section id="products" class="py-16 bg-white animate-fadeInUp">
+    <section id="products" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4 animate-fadeInUp">Our Products</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto animate-fadeInUp">We offer a comprehensive range of high-quality petroleum products to meet diverse industry needs</p>
+                <h2 class="text-3xl font-bold text-black mb-4">Our Products</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We offer a comprehensive range of high-quality petroleum products to meet diverse industry needs</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animated-stagger">
-                <!-- Example Product Items, add animate classes -->
-                <div class="product-item bg-white rounded-lg shadow-md p-6 animate-scaleIn">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4 product-logo animate-fadeInUp">
-                            <!-- SVG ... -->
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
                         </div>
-                        <span class="text-lg font-medium text-black animate-fadeInUp">D6</span>
+                        <span class="text-lg font-medium text-black">D6</span>
                     </div>
-                    <p class="text-gray-600 animate-fadeInUp">High-quality fuel oil for industrial applications</p>
+                    <p class="text-gray-600">High-quality fuel oil for industrial applications</p>
                 </div>
-                <!-- Repeat for all other product items -->
-                <!-- ... -->
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">LPG</span>
+                    </div>
+                    <p class="text-gray-600">Liquefied petroleum gas for residential and commercial heating</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">LNG</span>
+                    </div>
+                    <p class="text-gray-600">Liquefied natural gas for power generation and industrial use</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Jet Oil</span>
+                    </div>
+                    <p class="text-gray-600">Premium aviation fuel meeting international standards</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Crude Oil</span>
+                    </div>
+                    <p class="text-gray-600">Unrefined petroleum for refining into various oil products</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Light Crude</span>
+                    </div>
+                    <p class="text-gray-600">Low-density crude oil with low wax content and high API gravity</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Heavy Crude</span>
+                    </div>
+                    <p class="text-gray-600">High-density crude oil with high viscosity and low API gravity</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">EN590 10 PPM</span>
+                    </div>
+                    <p class="text-gray-600">Ultra-low sulfur diesel fuel meeting European standards</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 90</span>
+                    </div>
+                    <p class="text-gray-600">Standard octane gasoline for everyday vehicle use</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 92</span>
+                    </div>
+                    <p class="text-gray-600">Mid-grade gasoline for improved engine performance</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 95</span>
+                    </div>
+                    <p class="text-gray-600">Premium gasoline for high-performance engines</p>
+                </div>
+                <div class="product-item bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <span class="text-lg font-medium text-black">Gasoline RON 98</span>
+                    </div>
+                    <p class="text-gray-600">Ultra-premium gasoline for luxury and sports vehicles</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-100 animate-fadeInUp">
+    <section id="about" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="animate-fadeInUp">
-                    <h2 class="text-3xl font-bold text-black mb-6 animate-fadeInUp">About NEFT OIL TRADING</h2>
-                    <p class="text-gray-600 mb-4 animate-fadeInUp">NEFT OIL TRADING is a leading global oil trading company with over 25 years of experience in the petroleum industry. We specialize in the trading, distribution, and marketing of a wide range of oil products worldwide.</p>
-                    <p class="text-gray-600 mb-4 animate-fadeInUp">Our extensive network of suppliers, logistics partners, and customers enables us to deliver reliable and efficient oil trading solutions to meet diverse industry needs.</p>
-                    <p class="text-gray-600 mb-6 animate-fadeInUp">With a team of experienced professionals and industry experts, we provide strategic insights and tailored solutions to navigate the complex global oil market.</p>
-                    <div class="grid grid-cols-2 gap-4 animated-stagger">
-                        <div class="flex items-center animate-fadeInUp">
+                <div>
+                    <h2 class="text-3xl font-bold text-black mb-6">About NEFT OIL TRADING</h2>
+                    <p class="text-gray-600 mb-4">NEFT OIL TRADING is a leading global oil trading company with over 25 years of experience in the petroleum industry. We specialize in the trading, distribution, and supply of crude oil and refined petroleum products worldwide.</p>
+                    <p class="text-gray-600 mb-4">Our extensive network of suppliers, logistics partners, and customers enables us to deliver reliable and efficient oil trading solutions to meet diverse market needs.</p>
+                    <p class="text-gray-600 mb-6">With a team of experienced professionals and industry experts, we provide strategic insights and tailored solutions to navigate the complex global oil market.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span class="text-gray-700">Global Reach</span>
                         </div>
-                        <div class="flex items-center animate-fadeInUp">
+                        <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span class="text-gray-700">Quality Assurance</span>
                         </div>
-                        <div class="flex items-center animate-fadeInUp">
+                        <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span class="text-gray-700">Reliable Delivery</span>
                         </div>
-                        <div class="flex items-center animate-fadeInUp">
+                        <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
@@ -342,24 +390,24 @@ window.addEventListener('scroll', function() {
                         </div>
                     </div>
                 </div>
-                <div class="bg-black rounded-lg p-8 text-white animate-fadeInUp">
-                    <h3 class="text-2xl font-semibold mb-6 animate-fadeInUp">Office Address</h3>
-                    <div class="flex items-start mb-6 animate-fadeInUp">
+                <div class="bg-black rounded-lg p-8 text-white">
+                    <h3 class="text-2xl font-semibold mb-6">Office Address</h3>
+                    <div class="flex items-start mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                         <div>
-                            <p class="mb-1 animate-fadeInUp"><strong>Office No:</strong> E-25F-08</p>
-                            <p class="mb-1 animate-fadeInUp"><strong>Location:</strong> Hamriyah Free Zone,</p>
-                            <p class="animate-fadeInUp">Sharjah, United Arab Emirates</p>
+                            <p class="mb-1"><strong>Office No:</strong> E-25F-08</p>
+                            <p class="mb-1"><strong>Location:</strong> Hamriyah Free Zone,</p>
+                            <p>Sharjah, United Arab Emirates</p>
                         </div>
                     </div>
-                    <div class="flex items-center mb-6 animate-fadeInUp">
+                    <div class="flex items-center mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        <p class="animate-fadeInUp">Email: info@neftoiltrading.com</p>
+                        <p>Email: info@neftoiltrading.com</p>
                     </div>
                 </div>
             </div>
@@ -367,69 +415,70 @@ window.addEventListener('scroll', function() {
     </section>
 
     <!-- Leadership Team Section -->
-    <section id="leadership" class="py-16 bg-white animate-fadeInUp">
+    <section id="leadership" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4 animate-fadeInUp">Our Leadership Team</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto animate-fadeInUp">Meet the experienced professionals leading our global operations</p>
+                <h2 class="text-3xl font-bold text-black mb-4">Our Leadership Team</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals leading our global operations</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animated-stagger">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6 card animate-scaleIn">
-                    <h3 class="text-xl font-semibold text-black mb-2 animate-fadeInUp">Hamad Taryam Alshamsi</h3>
-                    <p class="text-gray-600 mb-4 animate-fadeInUp">President</p>
-                    <p class="text-gray-600 animate-fadeInUp">Guiding the organization with a strong commitment to sustainability and forward-thinking leadership. His dedication to responsible growth and ethical practices shapes our company's vision.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+                    <h3 class="text-xl font-semibold text-black mb-2">Hamad Taryam Alshamsi</h3>
+                    <p class="text-gray-600 mb-4">President</p>
+                    <p class="text-gray-600">Guiding the organization with a strong commitment to sustainability and forward-thinking leadership. His dedication to responsible growth and ethical practices has shaped a culture of innovation, resilience, and long-term impact across global operations.</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6 card animate-scaleIn">
-                    <h3 class="text-xl font-semibold text-black mb-2 animate-fadeInUp">Ali Yousif Bu Sari</h3>
-                    <p class="text-gray-600 mb-4 animate-fadeInUp">Founder</p>
-                    <p class="text-gray-600 animate-fadeInUp">Pioneering the company's global vision with remarkable foresight and industry acumen. His entrepreneurial spirit and strategic partnerships have established NEFT OIL TRADING as a key market player.</p>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+                    <h3 class="text-xl font-semibold text-black mb-2">Ali Yousif Bu Sari</h3>
+                    <p class="text-gray-600 mb-4">Founder</p>
+                    <p class="text-gray-600">Pioneering the company's global vision with remarkable foresight and industry acumen. His entrepreneurial spirit and strategic partnerships have established NEFT as a trusted name in international oil trading, setting new standards for excellence.</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6 card animate-scaleIn">
-                    <h3 class="text-xl font-semibold text-black mb-2 animate-fadeInUp">Jasim Mohamed Yousif</h3>
-                    <p class="text-gray-600 mb-4 animate-fadeInUp">Chief Executive Officer</p>
-                    <p class="text-gray-600 animate-fadeInUp">Driving progress through strategic foresight and a deep understanding of global markets. His commitment to innovation, sustainability, and operational excellence propels us forward.</p>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+                    <h3 class="text-xl font-semibold text-black mb-2">Jasim Mohamed Yousif</h3>
+                    <p class="text-gray-600 mb-4">Chief Executive Officer</p>
+                    <p class="text-gray-600">Driving progress through strategic foresight and a deep understanding of global markets. His commitment to innovation, sustainability, and operational excellence continues to shape the company’s evolving vision and lasting impact.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100 animate-fadeInUp">
+    <section id="contact" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4 animate-fadeInUp">Contact Us</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto animate-fadeInUp">If you are interested in our products or have any inquiries, please fill in your details below. Our team will get back to you directly via email.</p>
+                <h2 class="text-3xl font-bold text-black mb-4">Contact Us</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">If you are interested in our products or have any inquiries, please fill in your details below. Our team will get back to you directly via email.</p>
             </div>
             <div class="flex justify-center">
                 <form action="https://formsubmit.co/info@neftoiltrading.com" method="POST"
-                      class="w-full max-w-2xl bg-white rounded-lg shadow-md p-8 border border-gray-200 space-y-6 mx-auto animate-fadeInUp">
+                    class="w-full max-w-2xl bg-white rounded-lg shadow-md p-8 border border-gray-200 space-y-6 mx-auto">
                     <input type="hidden" name="_captcha" value="false">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 animated-stagger">
+                    <!-- Optional: <input type="hidden" name="_next" value="https://neftoiltrading.com/thank-you.html"> -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-gray-700 mb-2 animate-fadeInUp">Full Name</label>
+                            <label for="name" class="block text-gray-700 mb-2">Full Name</label>
                             <input type="text" id="name" name="name"
-                                   class="animated-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black animate-fadeInUp">
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 mb-2 animate-fadeInUp">Email Address</label>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
                             <input type="email" id="email" name="email"
-                                   class="animated-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black animate-fadeInUp">
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
                         </div>
                     </div>
                     <div>
-                        <label for="company" class="block text-gray-700 mb-2 animate-fadeInUp">Company Name</label>
+                        <label for="company" class="block text-gray-700 mb-2">Company Name</label>
                         <input type="text" id="company" name="company"
-                               class="animated-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black animate-fadeInUp">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
                     </div>
                     <div>
-                        <label for="phone" class="block text-gray-700 mb-2 animate-fadeInUp">Phone Number</label>
+                        <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
                         <input type="tel" id="phone" name="phone"
-                               class="animated-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black animate-fadeInUp">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
                     </div>
                     <div>
-                        <label for="inquiry" class="block text-gray-700 mb-2 animate-fadeInUp">Inquiry Type</label>
+                        <label for="inquiry" class="block text-gray-700 mb-2">Inquiry Type</label>
                         <select id="inquiry" name="inquiry"
-                                class="animated-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black animate-fadeInUp">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
                             <option value="">Select an inquiry type</option>
                             <option value="General">General Inquiry</option>
                             <option value="Product">Product Inquiry</option>
@@ -439,13 +488,13 @@ window.addEventListener('scroll', function() {
                         </select>
                     </div>
                     <div>
-                        <label for="message" class="block text-gray-700 mb-2 animate-fadeInUp">Message</label>
+                        <label for="message" class="block text-gray-700 mb-2">Message</label>
                         <textarea id="message" name="message" rows="4"
-                                  class="animated-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black animate-fadeInUp"></textarea>
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"></textarea>
                     </div>
                     <div>
                         <button type="submit"
-                                class="gradient-btn text-white font-medium py-3 px-6 rounded-md shadow-lg w-full md:w-auto mt-4 mb-8 animate-scaleIn">Send
+                            class="gradient-btn text-white font-medium py-3 px-6 rounded-md shadow-lg w-full md:w-auto mt-4 mb-8">Send
                             Message</button>
                     </div>
                 </form>
@@ -454,49 +503,49 @@ window.addEventListener('scroll', function() {
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-12 animate-fadeInUp">
+    <footer class="bg-black text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animated-stagger">
-                <div class="animate-fadeInUp">
-                    <div class="text-2xl font-bold mb-4 animate-fadeInUp">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4">
                         NEFT OIL TRADING
                     </div>
-                    <p class="text-gray-300 mb-4 animate-fadeInUp">Your trusted partner in global oil trading solutions.</p>
+                    <p class="text-gray-300 mb-4">Your trusted partner in global oil trading solutions.</p>
                 </div>
-                <div class="animate-fadeInUp">
-                    <h3 class="text-lg font-semibold mb-4 animate-fadeInUp">Quick Links</h3>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="footer-link text-gray-300 hover:text-white animate-fadeInUp">Home</a></li>
-                        <li><a href="#products" class="footer-link text-gray-300 hover:text-white animate-fadeInUp">Products</a></li>
-                        <li><a href="#about" class="footer-link text-gray-300 hover:text-white animate-fadeInUp">About Us</a></li>
-                        <li><a href="#leadership" class="footer-link text-gray-300 hover:text-white animate-fadeInUp">Leadership</a></li>
-                        <li><a href="#contact" class="footer-link text-gray-300 hover:text-white animate-fadeInUp">Contact</a></li>
+                        <li><a href="#home" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-white">Products</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#leadership" class="text-gray-300 hover:text-white">Leadership</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white">Contact</a></li>
                     </ul>
                 </div>
-                <div class="animate-fadeInUp">
-                    <h3 class="text-lg font-semibold mb-4 animate-fadeInUp">Contact Information</h3>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
                     <div class="space-y-4">
-                        <div class="flex items-start animate-fadeInUp">
+                        <div class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <div>
-                                <p class="text-gray-300 animate-fadeInUp">Office No: E-25F-08</p>
-                                <p class="text-gray-300 animate-fadeInUp">Hamriyah Free Zone,</p>
-                                <p class="text-gray-300 animate-fadeInUp">Sharjah, United Arab Emirates</p>
+                                <p class="text-gray-300">Office No: E-25F-08</p>
+                                <p class="text-gray-300">Hamriyah Free Zone,</p>
+                                <p class="text-gray-300">Sharjah, United Arab Emirates</p>
                             </div>
                         </div>
-                        <div class="flex items-center animate-fadeInUp">
+                        <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 0[...]
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <p class="text-gray-300 animate-fadeInUp">info@neftoiltrading.com</p>
+                            <p class="text-gray-300">info@neftoiltrading.com</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 animate-fadeInUp">
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2023 NEFT OIL TRADING. All rights reserved.</p>
             </div>
         </div>
@@ -506,6 +555,7 @@ window.addEventListener('scroll', function() {
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
@@ -529,11 +579,6 @@ window.addEventListener('scroll', function() {
                     mobileMenu.classList.add('hidden');
                 }
             });
-        });
-
-        // Optionally: Animate sections on scroll (intersection observer)
-        document.querySelectorAll('section, footer').forEach((section) => {
-            section.classList.add('animate-fadeInUp');
         });
     </script>
 </body>
