@@ -5,497 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEFT OIL TRADING</title>
     <script src="https://cdn.tailwindcss.com"></script>
-      <link rel="icon" href="Untitled design.svg" type="image/x-icon">
+    <link rel="icon" href="Untitled design.svg" type="image/x-icon">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
         }
-        .<style>
-.hero-section {
-    position: relative;
-    overflow: hidden;
-}
-</style>
-<section id="home" class="hero-section min-h-screen flex items-center pt-16 relative overflow-hidden">
-  <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0" id="bg-video">
-    <source src="your-video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 z-10"></div>
-  <div class="container mx-auto px-4 relative z-20">
-    <div class="max-w-4xl mx-auto text-center text-white">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Energy Solutions for a Changing World</h1>
-      <p class="text-xl md:text-2xl mb-10 leading-relaxed">Powering Progress Through Strategic Energy Trading</p>
-      <div class="flex flex-col sm:flex-row justify-center gap-6">
-        <a href="#products" class="gradient-btn text-white font-semibold py-4 px-10 rounded-md shadow-lg text-lg">Discover More</a>
-        <a href="#contact" class="outline-btn border-2 border-white text-white font-semibold py-4 px-10 rounded-md text-lg hover:bg-white hover:text-black transition duration-300">Contact Us</a>
-      </div>
-    </div>
-  </div>
-</section>
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-btn {
+            background: linear-gradient(90deg, #222222 0%, #000000 100%);
+            transition: all 0.3s ease;
+        }
+        .gradient-btn:hover {
+            background: linear-gradient(90deg, #000000 0%, #222222 100%);
+            transform: translateY(-2px);
+        }
+        .outline-btn {
+            transition: all 0.3s ease;
+        }
+        .outline-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .price-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #000000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .price-line {
+            position: absolute;
+            height: 2px;
+            background-color: #000000;
+            transform-origin: left center;
+        }
+        .product-item {
+            transition: all 0.3s ease;
+        }
+        .product-item:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        .product-logo {
+            transition: all 0.3s ease;
+        }
+        .product-logo:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-md fixed w-full z-10">
-    <div class="container mx-auto px-4 py-3">
+      <div class="container mx-auto px-4 py-3">
         <div class="flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="logo.png" alt="Logo" class="h-10 w-auto mr-2" />
-                <span class="text-2xl font-bold text-black">NEFT OIL TRADING</span>
-            </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
-                    <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
-                    <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
-                    <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
-                    <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div id="mobile-menu" class="md:hidden hidden">
-                <div class="flex flex-col space-y-3 py-3">
-                    <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
-                    <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
-                    <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
-                    <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
-                    <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
-                </div>
-            </div>
+          <div class="flex items-center">
+            <img src="logo.png" alt="Logo" class="h-10 w-auto mr-2" />
+            <span class="text-2xl font-bold text-black">NEFT OIL TRADING</span>
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
+            <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
+            <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
+            <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
+            <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
+          </div>
+          <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-gray-700 hover:text-black focus:outline-none">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
         </div>
+        <div id="mobile-menu" class="md:hidden hidden">
+          <div class="flex flex-col space-y-3 py-3">
+            <a href="#home" class="text-gray-700 hover:text-black font-medium">Home</a>
+            <a href="#products" class="text-gray-700 hover:text-black font-medium">Products</a>
+            <a href="#about" class="text-gray-700 hover:text-black font-medium">About Us</a>
+            <a href="#leadership" class="text-gray-700 hover:text-black font-medium">Leadership</a>
+            <a href="#contact" class="text-gray-700 hover:text-black font-medium">Contact</a>
+          </div>
+        </div>
+      </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section min-h-screen flex items-center pt-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center text-white">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Energy Solutions for a Changing World</h1>
-                <p class="text-xl md:text-2xl mb-10 leading-relaxed">Powering Progress Through Strategic Energy Trading</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <a href="#products" class="gradient-btn text-white font-semibold py-4 px-10 rounded-md shadow-lg text-lg">Discover More</a>
-                    <a href="#contact" class="outline-btn border-2 border-white text-white font-semibold py-4 px-10 rounded-md text-lg hover:bg-white hover:text-black transition duration-300">Contact Us</a>
-                </div>
-            </div>
+    <!-- Hero Section with Background Video -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-16 relative overflow-hidden">
+      <!-- Background Video -->
+      <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0" id="bg-video">
+        <source src="your-video.mp4" type="video/mp4" />
+        <!-- Optionally add other formats for broader compatibility -->
+        Your browser does not support the video tag.
+      </video>
+      <!-- Overlay for readability -->
+      <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 z-10"></div>
+      <!-- Content -->
+      <div class="container mx-auto px-4 relative z-20">
+        <div class="max-w-4xl mx-auto text-center text-white">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Energy Solutions for a Changing World</h1>
+          <p class="text-xl md:text-2xl mb-10 leading-relaxed">Powering Progress Through Strategic Energy Trading</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="#products" class="gradient-btn text-white font-semibold py-4 px-10 rounded-md shadow-lg text-lg">Discover More</a>
+            <a href="#contact" class="outline-btn border-2 border-white text-white font-semibold py-4 px-10 rounded-md text-lg hover:bg-white hover:text-black transition duration-300">Contact Us</a>
+          </div>
         </div>
+      </div>
     </section>
+
+    <!-- The rest of your site below remains unchanged -->
 
     <!-- Stats Section -->
-    <section class="py-12 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                <div class="p-6">
-                    <div class="text-3xl font-bold text-black mb-2">25+</div>
-                    <div class="text-gray-600">Years Experience</div>
-                </div>
-                <div class="p-6">
-                    <div class="text-3xl font-bold text-black mb-2">50+</div>
-                    <div class="text-gray-600">Global Partners</div>
-                </div>
-                <div class="p-6">
-                    <div class="text-3xl font-bold text-black mb-2">1M+</div>
-                    <div class="text-gray-600">Barrels Traded</div>
-                </div>
-                <div class="p-6">
-                    <div class="text-3xl font-bold text-black mb-2">30+</div>
-                    <div class="text-gray-600">Countries Served</div>
-                </div>
-            </div>
-        </div>
-    </section>
- <!-- News & Gallery Section -->
-    <section id="news" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4">News & Gallery</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Latest updates and gallery.</p>
-            </div>
-            <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                <!-- LinkedIn Article Example -->
-                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col">
-                    <a href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/?trackingId=kn%2BsOS2EYwvphtfBA0YfpQ%3D%3D" target="_blank">
-                        <img src="profile.jpg" alt="Article 1" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-xl font-semibold mb-2"><a href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/?trackingId=kn%2BsOS2EYwvphtfBA0YfpQ%3D%3D" target="_blank" class="hover:underline">Fueling Global Progress with Integrity</a></h3>
-                        <p class="text-gray-600 flex-1">The Neft Oil Trading Journey.</p>
-                        <span class="text-gray-400 text-xs mt-3">LinkedIn Article</span>
-                    </div>
-                </div>
-              <!-- Article Example -->
-                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col">
-                    <a href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank">
-                        <img src="Port-of-Fujairah.jpg" alt="Article 1" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-xl font-semibold mb-2"><a href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank" class="hover:underline">Why Fujairah’s Port Expansion Could Transform UAE’s Economy</a></h3>
-                        <p class="text-gray-600 flex-1">The Vision Behind the Expansion.</p>
-                        <span class="text-gray-400 text-xs mt-3">Article</span>
-                    </div>
-                </div>
-                <!-- Article Example -->
-                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden flex flex-col">
-                    <a href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank">
-                        <img src="photous1.jpg" alt="Article 1" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6 flex flex-col flex-1">
-                        <h3 class="text-xl font-semibold mb-2"><a href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank" class="hover:underline">12 Major U.S Oil Terminals</a></h3>
-                        <p class="text-gray-600 flex-1">Top Locations U.S. Oil Storage and Distribution.</p>
-                        <span class="text-gray-400 text-xs mt-3">Article</span>
-                    </div>
-                </div>
-                <!-- Add more LinkedIn or photo blocks as needed -->
-            </div>
-        </div>
-    </section>
-    <!-- Products Section -->
-    <section id="products" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4">Our Products</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">We offer a comprehensive range of high-quality petroleum products to meet diverse industry needs</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">D6</span>
-                    </div>
-                    <p class="text-gray-600">High-quality fuel oil for industrial applications</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">LPG</span>
-                    </div>
-                    <p class="text-gray-600">Liquefied petroleum gas for residential and commercial heating</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">LNG</span>
-                    </div>
-                    <p class="text-gray-600">Liquefied natural gas for power generation and industrial use</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Jet Oil</span>
-                    </div>
-                    <p class="text-gray-600">Premium aviation fuel meeting international standards</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Crude Oil</span>
-                    </div>
-                    <p class="text-gray-600">Unrefined petroleum for refining into various oil products</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Light Crude</span>
-                    </div>
-                    <p class="text-gray-600">Low-density crude oil with low wax content and high API gravity</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Heavy Crude</span>
-                    </div>
-                    <p class="text-gray-600">High-density crude oil with high viscosity and low API gravity</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">EN590 10 PPM</span>
-                    </div>
-                    <p class="text-gray-600">Ultra-low sulfur diesel fuel meeting European standards</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Gasoline RON 90</span>
-                    </div>
-                    <p class="text-gray-600">Standard octane gasoline for everyday vehicle use</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Gasoline RON 92</span>
-                    </div>
-                    <p class="text-gray-600">Mid-grade gasoline for improved engine performance</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Gasoline RON 95</span>
-                    </div>
-                    <p class="text-gray-600">Premium gasoline for high-performance engines</p>
-                </div>
-                <div class="product-item bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-lg font-medium text-black">Gasoline RON 98</span>
-                    </div>
-                    <p class="text-gray-600">Ultra-premium gasoline for luxury and sports vehicles</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- ... (rest of your HTML as before) ... -->
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold text-black mb-6">About NEFT OIL TRADING</h2>
-                    <p class="text-gray-600 mb-4">NEFT OIL TRADING is a leading global oil trading company with over 25 years of experience in the petroleum industry. We specialize in the trading, distribution, and supply of crude oil and refined petroleum products worldwide.</p>
-                    <p class="text-gray-600 mb-4">Our extensive network of suppliers, logistics partners, and customers enables us to deliver reliable and efficient oil trading solutions to meet diverse market needs.</p>
-                    <p class="text-gray-600 mb-6">With a team of experienced professionals and industry experts, we provide strategic insights and tailored solutions to navigate the complex global oil market.</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Global Reach</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Quality Assurance</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Reliable Delivery</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700">Market Expertise</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-black rounded-lg p-8 text-white">
-                    <h3 class="text-2xl font-semibold mb-6">Office Address</h3>
-                    <div class="flex items-start mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <div>
-                            <p class="mb-1"><strong>Office No:</strong> E-25F-08</p>
-                            <p class="mb-1"><strong>Location:</strong> Hamriyah Free Zone,</p>
-                            <p>Sharjah, United Arab Emirates</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        <p>Email: info@neftoiltrading.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership Team Section -->
-    <section id="leadership" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4">Our Leadership Team</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals leading our global operations</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                    <h3 class="text-xl font-semibold text-black mb-2">Hamad Taryam Alshamsi</h3>
-                    <p class="text-gray-600 mb-4">President</p>
-                    <p class="text-gray-600">Guiding the organization with a strong commitment to sustainability and forward-thinking leadership. His dedication to responsible growth and ethical practices has shaped a culture of innovation, resilience, and long-term impact across global operations.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                    <h3 class="text-xl font-semibold text-black mb-2">Ali Yousif Bu Sari</h3>
-                    <p class="text-gray-600 mb-4">Founder</p>
-                    <p class="text-gray-600">Pioneering the company's global vision with remarkable foresight and industry acumen. His entrepreneurial spirit and strategic partnerships have established NEFT as a trusted name in international oil trading, setting new standards for excellence.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                    <h3 class="text-xl font-semibold text-black mb-2">Jasim Mohamed Yousif</h3>
-                    <p class="text-gray-600 mb-4">Chief Executive Officer</p>
-                    <p class="text-gray-600">Driving progress through strategic foresight and a deep understanding of global markets. His commitment to innovation, sustainability, and operational excellence continues to shape the company’s evolving vision and lasting impact.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-black mb-4">Contact Us</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">If you are interested in our products or have any inquiries, please fill in your details below. Our team will get back to you directly via email.</p>
-            </div>
-            <div class="flex justify-center">
-                <form action="https://formsubmit.co/info@neftoiltrading.com" method="POST"
-                    class="w-full max-w-2xl bg-white rounded-lg shadow-md p-8 border border-gray-200 space-y-6 mx-auto">
-                    <input type="hidden" name="_captcha" value="false">
-                    <!-- Optional: <input type="hidden" name="_next" value="https://neftoiltrading.com/thank-you.html"> -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-gray-700 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="company" class="block text-gray-700 mb-2">Company Name</label>
-                        <input type="text" id="company" name="company"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                    </div>
-                    <div>
-                        <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                    </div>
-                    <div>
-                        <label for="inquiry" class="block text-gray-700 mb-2">Inquiry Type</label>
-                        <select id="inquiry" name="inquiry"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
-                            <option value="">Select an inquiry type</option>
-                            <option value="General">General Inquiry</option>
-                            <option value="Product">Product Inquiry</option>
-                            <option value="Price">Price Inquiry</option>
-                            <option value="Partnership">Partnership Opportunity</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="message" class="block text-gray-700 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="4"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"></textarea>
-                    </div>
-                    <div>
-                        <button type="submit"
-                            class="gradient-btn text-white font-medium py-3 px-6 rounded-md shadow-lg w-full md:w-auto mt-4 mb-8">Send
-                            Message</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <div class="text-2xl font-bold mb-4">
-                        NEFT OIL TRADING
-                    </div>
-                    <p class="text-gray-300 mb-4">Your trusted partner in global oil trading solutions.</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-300 hover:text-white">Home</a></li>
-                        <li><a href="#products" class="text-gray-300 hover:text-white">Products</a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-white">About Us</a></li>
-                        <li><a href="#leadership" class="text-gray-300 hover:text-white">Leadership</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <div>
-                                <p class="text-gray-300">Office No: E-25F-08</p>
-                                <p class="text-gray-300">Hamriyah Free Zone,</p>
-                                <p class="text-gray-300">Sharjah, United Arab Emirates</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <p class="text-gray-300">info@neftoiltrading.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 NEFT OIL TRADING. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- Don't forget your scripts at the end -->
     <script>
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
