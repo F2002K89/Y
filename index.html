@@ -70,16 +70,7 @@
         }
         .product-logo:hover {
             transform: translateY(-5px);
-            
-        <!-- Bilingual Section Start -->
-<div class="max-w-3xl mx-auto my-12 p-6 bg-white rounded-xl shadow-lg">
-  <div class="flex justify-end mb-4">
-    <button id="showEN" class="lang-selector px-4 py-2 text-white font-semibold bg-black rounded-l-full focus:outline-none">English</button>
-    <button id="showAR" class="lang-selector px-4 py-2 text-white font-semibold bg-gray-600 rounded-r-full focus:outline-none">العربية</button>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <!-- English Content -->
-    <div id="enSection">
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -492,31 +483,7 @@
             </div>
         </div>
     </section>
-  // Language Section Toggle
-  document.getElementById('showEN').onclick = function() {
-    document.getElementById('enSection').classList.remove('hidden');
-    document.getElementById('arSection').classList.add('hidden');
-    this.classList.add('bg-black');
-    this.classList.remove('bg-gray-600');
-    document.getElementById('showAR').classList.remove('bg-black');
-    document.getElementById('showAR').classList.add('bg-gray-600');
-  }
-  document.getElementById('showAR').onclick = function() {
-    document.getElementById('enSection').classList.add('hidden');
-    document.getElementById('arSection').classList.remove('hidden');
-    this.classList.add('bg-black');
-    this.classList.remove('bg-gray-600');
-    document.getElementById('showEN').classList.remove('bg-black');
-    document.getElementById('showEN').classList.add('bg-gray-600');
-  }
-</script>
-<style>
-  .lang-selector {
-    transition: background 0.25s;
-  }
-</style>
-<!-- Bilingual Section End -->
-    
+
     <!-- Footer -->
     <footer class="bg-black text-white py-12">
         <div class="container mx-auto px-4">
