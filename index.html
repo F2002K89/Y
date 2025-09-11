@@ -109,10 +109,15 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+     <!-- Hero Section with Background Video -->
     <section id="home" class="hero-section min-h-screen flex items-center pt-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center text-white">
+        <video class="hero-video" autoplay muted loop playsinline poster="backgrounds.jpg">
+            <source src="background.mp4" type="video/mp4">
+            <!-- Fallback image for browsers that don't support video -->
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container mx-auto px-4 hero-content text-center text-white">
+            <div class="max-w-4xl mx-auto">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Energy Solutions for a Changing World</h1>
                 <p class="text-xl md:text-2xl mb-10 leading-relaxed">Powering Progress Through Strategic Energy Trading</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-6">
@@ -121,7 +126,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
     <!-- Stats Section -->
     <section class="py-12 bg-gray-100">
