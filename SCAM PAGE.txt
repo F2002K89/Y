@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scam Alert — NEFT OIL TRADING</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{font-family:'Montserrat',sans-serif}</style>
+</head>
+<body class="bg-white text-slate-900">
+<header class="border-b">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<a href="index.html" class="font-extrabold">NEFT OIL TRADING</a>
+<nav class="hidden md:flex gap-6">
+<a href="index.html#home">Home</a>
+<a href="index.html#products">Products</a>
+<a href="index.html#about">About Us</a>
+<a href="index.html#leadership">Leadership</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</div>
+</header>
+
+
+<main class="py-16">
+<div class="max-w-5xl mx-auto px-6 text-center">
+<h1 class="text-3xl md:text-4xl font-extrabold mb-6">Scam Alert</h1>
+<p class="text-gray-700 text-lg leading-relaxed mb-6">We are aware of fraudulent entities claiming to represent NEFT OIL TRADING. We only communicate from <strong>@neftoiltrading.com</strong> email addresses and our official channels.</p>
+<p class="text-gray-700 text-lg leading-relaxed mb-6">If you receive suspicious messages or offers, do not respond. Report immediately to <a class="underline" href="mailto:info@neftoiltrading.com">info@neftoiltrading.com</a>.</p>
+<div class="mt-10 bg-slate-50 border border-black/10 rounded-2xl p-8 text-left">
+<h2 class="text-2xl font-semibold mb-4 text-center">Protect Yourself</h2>
+<ul class="list-disc text-gray-700 space-y-2 pl-5">
+<li>Verify the sender — official emails end with <strong>@neftoiltrading.com</strong>.</li>
+<li>Never send money or share sensitive information to unknown parties.</li>
+<li>Contact us directly if you are unsure of a communication’s legitimacy.</li>
+<li>Report scams to us and local authorities.</li>
+</ul>
+</div>
+</div>
+</main>
+
+
+<footer class="py-10 border-t">
+<div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+<p>© <script>document.write(new Date().getFullYear())</script> NEFT OIL TRADING</p>
+<a class="underline" href="news.html">News & Gallery</a>
+</div>
+</footer>
+</body>
+</html>
