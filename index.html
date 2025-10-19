@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NEFT OIL TRADING</title>
-  <meta name="description" content="NEFT OIL TRADING FZE – Global trading and supply of crude and refined petroleum products. Reliable delivery. Market expertise. Hamriyah Free Zone, Sharjah." />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="NEFT OIL TRADING FZE – Global trading and supply of crude and refined petroleum products. Reliable delivery. Market expertise. Hamriyah Free Zone, Sharjah.">
+  <meta name="theme-color" content="#ffffff">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,12 +21,19 @@
     .reveal{opacity:0;transform:translateY(18px);transition:all .7s ease}
     .reveal.show{opacity:1;transform:none}
 
-    /* Cinematic hero */
-    .hero-wrap{position:relative;height:100vh;overflow:hidden}
-    .hero-img{position:absolute;inset:0;background:url('backgrounds.jpg') center/cover no-repeat;
-      transform:scale(1);animation:kenburns 24s ease-in-out infinite alternate}
-    @keyframes kenburns {from{transform:scale(1)} to{transform:scale(1.12)}}
-    .hero-vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 60%, transparent 0%, transparent 55%, rgba(0,0,0,.35) 100%)}
+    /* Cinematic hero (desktop default) */
+    .hero-wrap{position:relative;height:92vh;min-height:560px;overflow:hidden}
+    .hero-img{position:absolute;inset:0;background:url('backgrounds.jpg') center/cover no-repeat;will-change:transform;background-attachment:scroll;transform:scale(1.06);animation:kenburns 26s ease-in-out infinite alternate}
+    @keyframes kenburns {from{transform:scale(1.02)} to{transform:scale(1.12)}}
+    .hero-vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 60%, transparent 0%, transparent 58%, rgba(0,0,0,.30) 100%)}
+
+    /* Mobile tuning: keep the tank logo fully visible */
+    @media (max-width:640px){
+      .hero-wrap{height:84vh;min-height:70vh}
+      .hero-img{background-position:center 18%;transform:scale(1.04);animation:kenburnsMobile 30s ease-in-out infinite alternate}
+      @keyframes kenburnsMobile {from{transform:scale(1.02)} to{transform:scale(1.08)}}
+      .hero-vignette{background:radial-gradient(circle at 50% 65%, transparent 0%, transparent 62%, rgba(0,0,0,.22) 100%)}
+    }
 
     /* Back-to-top */
     .to-top{opacity:0;transform:translateY(12px);pointer-events:none;transition:all .25s ease}
@@ -67,7 +74,7 @@
   </nav>
 
   <!-- HERO (image only) -->
-  <section id="home" class="hero-wrap" aria-label="Hero image">
+  <section id="home" class="hero-wrap">
     <div id="heroImg" class="hero-img"></div>
     <div class="hero-vignette" aria-hidden="true"></div>
   </section>
@@ -90,31 +97,19 @@
   </section>
 
   <!-- STATS -->
-  <section class="py-12 bg-gray-50" aria-label="Company stats">
+  <section class="py-12 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="25">0</div>
-          <div class="text-gray-600">Years Experience</div>
-        </div>
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="50">0</div>
-          <div class="text-gray-600">Global Partners</div>
-        </div>
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="1000000">0</div>
-          <div class="text-gray-600">Barrels Traded</div>
-        </div>
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="30">0</div>
-          <div class="text-gray-600">Countries Served</div>
-        </div>
+        <div class="p-6 reveal"><div class="text-3xl md:text-4xl font-extrabold" data-count="25">0</div><div class="text-gray-600">Years Experience</div></div>
+        <div class="p-6 reveal"><div class="text-3xl md:text-4xl font-extrabold" data-count="50">0</div><div class="text-gray-600">Global Partners</div></div>
+        <div class="p-6 reveal"><div class="text-3xl md:text-4xl font-extrabold" data-count="1000000">0</div><div class="text-gray-600">Barrels Traded</div></div>
+        <div class="p-6 reveal"><div class="text-3xl md:text-4xl font-extrabold" data-count="30">0</div><div class="text-gray-600">Countries Served</div></div>
       </div>
     </div>
   </section>
 
   <!-- FEATURED NEWS -->
-  <section class="py-16 bg-white" aria-label="Featured news">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Media Center</h2>
       <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Highlights from our network. See more on the News page.</p>
@@ -124,9 +119,7 @@
             <img src="LINKEDIN.jpg" alt="Fueling Global Progress with Integrity" class="w-full h-48 object-cover" loading="lazy" />
           </a>
           <div class="p-6 text-left">
-            <h3 class="text-xl font-semibold mb-2">
-              <a class="hover:underline" href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/" target="_blank" rel="noopener">Fueling Global Progress with Integrity</a>
-            </h3>
+            <h3 class="text-xl font-semibold mb-2"><a class="hover:underline" href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/" target="_blank" rel="noopener">Fueling Global Progress with Integrity</a></h3>
             <p class="text-gray-600">The NEFT Oil Trading journey.</p>
           </div>
         </article>
@@ -152,31 +145,140 @@
     </div>
   </section>
 
-  <!-- PRODUCTS (12 items) -->
-  <section id="products" class="py-16 bg-gray-50" aria-label="Products">
+  <!-- PRODUCTS (12 items + icons) -->
+  <section id="products" class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Our Products</h2>
       <p class="mt-4 text-gray-600 max-w-2xl mx-auto">A comprehensive range of high-quality petroleum products to meet diverse industry needs.</p>
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <!-- 12 static cards for simplicity -->
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">D6</h3><p>High-quality fuel oil for industrial applications.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">LPG</h3><p>Liquefied petroleum gas for residential and commercial heating.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">LNG</h3><p>Liquefied natural gas for power generation and industrial use.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Jet Oil</h3><p>Premium aviation fuel meeting international standards.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Crude Oil</h3><p>Unrefined petroleum for refining into various oil products.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Light Crude</h3><p>Low-density crude with high API gravity.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Heavy Crude</h3><p>High-viscosity crude with low API gravity.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">EN590 10 PPM</h3><p>Ultra-low sulfur diesel meeting European standards.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Gasoline RON 90</h3><p>Standard octane gasoline for everyday use.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Gasoline RON 92</h3><p>Mid-grade gasoline for improved performance.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Gasoline RON 95</h3><p>Premium gasoline for high-performance engines.</p></div>
-        <div class="bg-white rounded-xl border p-6 text-left card"><h3 class="font-semibold text-lg mb-2">Gasoline RON 98</h3><p>Ultra-premium gasoline for luxury and sports vehicles.</p></div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 text-left">
+        <!-- product card helper -->
+        <!-- each card uses the same icon circle for consistency -->
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">D6</h3>
+          </div>
+          <p>High-quality fuel oil for industrial applications.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">LPG</h3>
+          </div>
+          <p>Liquefied petroleum gas for residential and commercial heating.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">LNG</h3>
+          </div>
+          <p>Liquefied natural gas for power generation and industrial use.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Jet Oil</h3>
+          </div>
+          <p>Premium aviation fuel meeting international standards.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Crude Oil</h3>
+          </div>
+          <p>Unrefined petroleum for refining into various oil products.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Light Crude</h3>
+          </div>
+          <p>Low-density crude with high API gravity.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Heavy Crude</h3>
+          </div>
+          <p>High-viscosity crude with low API gravity.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">EN590 10 PPM</h3>
+          </div>
+          <p>Ultra-low sulfur diesel meeting European standards.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Gasoline RON 90</h3>
+          </div>
+          <p>Standard octane gasoline for everyday use.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Gasoline RON 92</h3>
+          </div>
+          <p>Mid-grade gasoline for improved performance.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Gasoline RON 95</h3>
+          </div>
+          <p>Premium gasoline for high-performance engines.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border p-6 card">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-12 h-12 rounded-full bg-black text-white grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Gasoline RON 98</h3>
+          </div>
+          <p>Ultra-premium gasoline for luxury and sports vehicles.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-16 bg-white" aria-label="About">
+  <section id="about" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
       <div class="reveal">
         <h2 class="text-3xl md:text-4xl font-extrabold accent mb-6">About NEFT OIL TRADING</h2>
@@ -186,18 +288,24 @@
       </div>
       <div class="reveal">
         <div class="bg-black text-white rounded-2xl p-8">
-          <h3 class="text-2xl font-semibold mb-6">Office Address</h3>
-          <p><strong>Office No:</strong> E-25F-08</p>
-          <p><strong>Location:</strong> Hamriyah Free Zone</p>
-          <p>Sharjah, United Arab Emirates</p>
-          <p class="mt-4">info@neftoiltrading.com</p>
+          <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+          <div class="space-y-4 text-white/90">
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3" fill="currentColor"/></svg>
+              <p>Office No: E-25F-08<br>Hamriyah Free Zone,<br>Sharjah, United Arab Emirates</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <p>info@neftoiltrading.com</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- LEADERSHIP -->
-  <section id="leadership" class="py-16 bg-gray-50" aria-label="Leadership">
+  <section id="leadership" class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Our Leadership Team</h2>
       <p class="mt-4 text-gray-600">Meet the experienced professionals leading our global operations.</p>
@@ -222,7 +330,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-16 bg-white" aria-label="Contact">
+  <section id="contact" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Contact Us</h2>
       <p class="mt-4 text-gray-600">Fill out the form and our team will respond promptly.</p>
@@ -262,7 +370,7 @@
       </div>
       <div>
         <h3 class="font-semibold mb-3">Contact Information</h3>
-        <p>Office No: E-25F-08 Hamriyah Free Zone Sharjah, United Arab Emirates</p>
+        <p>Office No: E-25F-08<br>Hamriyah Free Zone<br>Sharjah, United Arab Emirates</p>
         <p class="mt-2">info@neftoiltrading.com</p>
       </div>
     </div>
@@ -278,7 +386,7 @@
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+    menuBtn?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
 
     // Smooth anchor offset for fixed nav
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -322,12 +430,25 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Cinematic parallax (light, mobile-safe)
-    const hero = document.getElementById('heroImg');
-    window.addEventListener('scroll', ()=>{
-      const y = window.scrollY * 0.25; // slower than scroll
-      hero.style.transform = `translateY(${y}px) scale(1.12)`; // keep slight zoomed state
-    }, {passive:true});
+    // Cinematic parallax (mobile-safe)
+    function bindParallax(){
+      const hero = document.getElementById('heroImg');
+      if(!hero) return;
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      // Phones: gentle zoom only to avoid iOS jitter
+      if(isMobile){
+        hero.style.transform = 'scale(1.06)';
+        return;
+      }
+      // Desktop/tablet: subtle translate parallax
+      const onScroll = ()=>{
+        const y = window.scrollY * 0.22;
+        hero.style.transform = `translateY(${y}px) scale(1.12)`;
+      };
+      window.addEventListener('scroll', onScroll, {passive:true});
+    }
+    bindParallax();
+    window.addEventListener('resize', bindParallax);
   </script>
 </body>
 </html>
