@@ -1,4 +1,3 @@
-<!-- ========================= index.html (HOME) ========================= -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -12,49 +11,46 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="Untitled design.svg" type="image/svg+xml">
   <style>
-    body{ font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#ffffff; color:#0a0a0a; }
-    .glass{ backdrop-filter:saturate(180%) blur(10px); background:rgba(255,255,255,.75); }
-    .hero{ background: linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)), url('backgrounds.jpg') center/cover no-repeat; }
-    .card{ transition: transform .35s ease, box-shadow .35s ease; }
-    .card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px -10px rgba(0,0,0,.25); }
-    .accent{ position:relative; }
-    .accent:after{ content:""; position:absolute; left:50%; bottom:-6px; width:120px; height:3px; transform:translateX(-50%); background: linear-gradient(90deg,#000,#3f3f46,#000); border-radius:999px; }
-    .reveal{ opacity:0; transform: translateY(16px); transition: all .6s ease; }
-    .reveal.show{ opacity:1; transform:none; }
-    .to-top{ opacity:0; pointer-events:none; transform:translateY(12px); transition:all .25s ease; }
-    .to-top.show{ opacity:1; pointer-events:auto; transform:none; }
+    body {font-family: 'Montserrat', sans-serif; background: #ffffff; color: #0a0a0a;}
+    .glass {backdrop-filter: saturate(180%) blur(10px); background: rgba(255,255,255,.75);}
+    .hero {background: linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)), url('backgrounds.jpg') center/cover no-repeat;}
+    .card {transition: transform .35s ease, box-shadow .35s ease;}
+    .card:hover {transform: translateY(-6px); box-shadow: 0 18px 40px -10px rgba(0,0,0,.25);}
+    .accent {position: relative;}
+    .accent:after {content: ''; position: absolute; left: 50%; bottom: -6px; width: 120px; height: 3px; transform: translateX(-50%); background: linear-gradient(90deg,#000,#3f3f46,#000); border-radius: 999px;}
   </style>
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="fixed inset-x-0 top-0 z-50 glass border-b border-black/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <a href="#home" class="flex items-center gap-2">
-          <img src="logo.png" class="h-9 w-9 object-contain" alt="NEFT logo" loading="lazy"/>
+          <img src="logo.png" class="h-9 w-9 object-contain" alt="NEFT logo" loading="lazy" />
           <span class="font-extrabold tracking-tight text-lg sm:text-xl">NEFT OIL TRADING</span>
         </a>
         <div class="hidden md:flex items-center gap-8 font-medium">
-          <a id="navHome" href="#home">Home</a>
-          <a id="navProducts" href="#products">Products</a>
-          <a id="navAbout" href="#about">About Us</a>
-          <a id="navLeadership" href="#leadership">Leadership</a>
-          <a id="navContact" href="#contact">Contact</a>
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#about">About Us</a>
+          <a href="#leadership">Leadership</a>
+          <a href="#contact">Contact</a>
+          <a href="news.html">News & Gallery</a>
         </div>
-        <div class="flex items-center gap-2">
-          <button id="langBtn" class="inline-flex items-center justify-center rounded-full border border-black/10 px-3 h-10 text-sm font-medium">AR</button>
-          <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-full border border-black/10 w-10 h-10" aria-label="Open menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
-        </div>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-full border border-black/10 w-10 h-10" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
-      <!-- Mobile menu (no News or Scam here) -->
       <div id="mobileMenu" class="md:hidden hidden pt-2 pb-4 space-y-2">
-        <a id="mNavHome" class="block px-3 py-2 rounded hover:bg-black/5" href="#home">Home</a>
-        <a id="mNavProducts" class="block px-3 py-2 rounded hover:bg-black/5" href="#products">Products</a>
-        <a id="mNavAbout" class="block px-3 py-2 rounded hover:bg-black/5" href="#about">About Us</a>
-        <a id="mNavLeadership" class="block px-3 py-2 rounded hover:bg-black/5" href="#leadership">Leadership</a>
-        <a id="mNavContact" class="block px-3 py-2 rounded hover:bg-black/5" href="#contact">Contact</a>
+        <a href="#home" class="block px-3 py-2 rounded hover:bg-black/5">Home</a>
+        <a href="#products" class="block px-3 py-2 rounded hover:bg-black/5">Products</a>
+        <a href="#about" class="block px-3 py-2 rounded hover:bg-black/5">About Us</a>
+        <a href="#leadership" class="block px-3 py-2 rounded hover:bg-black/5">Leadership</a>
+        <a href="#contact" class="block px-3 py-2 rounded hover:bg-black/5">Contact</a>
+        <a href="news.html" class="block px-3 py-2 rounded hover:bg-black/5">News & Gallery</a>
       </div>
     </div>
   </nav>
@@ -62,141 +58,53 @@
   <!-- Hero -->
   <section id="home" class="hero min-h-[88vh] grid place-items-center text-white pt-20">
     <div class="max-w-4xl text-center px-6">
-      <h1 id="heroTitle" class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">Global Energy Solutions for a Changing World</h1>
-      <p id="heroSubtitle" class="mt-6 text-lg md:text-2xl/relaxed text-gray-200">Powering progress through strategic energy trading.</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">Global Energy Solutions for a Changing World</h1>
+      <p class="mt-6 text-lg md:text-2xl/relaxed text-gray-200">Powering progress through strategic energy trading.</p>
       <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-        <a id="heroDiscover" href="#products" class="px-8 py-4 rounded-md bg-black/90 hover:bg-black transition shadow-lg">Discover More</a>
-        <a id="heroContact" href="#contact" class="px-8 py-4 rounded-md border border-white/70 hover:bg-white hover:text-black transition">Contact Us</a>
+        <a href="#products" class="px-8 py-4 rounded-md bg-black/90 hover:bg-black transition shadow-lg">Discover More</a>
+        <a href="#contact" class="px-8 py-4 rounded-md border border-white/70 hover:bg-white hover:text-black transition">Contact Us</a>
       </div>
-      <div id="heroTag" class="mt-10 text-xs uppercase tracking-widest text-gray-300">Hamriyah Free Zone · Sharjah · UAE</div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="25">0</div>
-          <div id="expLabel" class="text-gray-600">Years Experience</div>
-        </div>
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="50">0</div>
-          <div id="partnersLabel" class="text-gray-600">Global Partners</div>
-        </div>
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="1000000">0</div>
-          <div id="barrelsLabel" class="text-gray-600">Barrels Traded</div>
-        </div>
-        <div class="p-6 reveal">
-          <div class="text-3xl md:text-4xl font-extrabold" data-count="30">0</div>
-          <div id="countriesLabel" class="text-gray-600">Countries Served</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured News (homepage only) -->
-  <section id="news" class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 id="newsTitle" class="text-3xl md:text-4xl font-extrabold accent">News & Gallery</h2>
-      <p id="newsSub" class="mt-4 text-gray-600 max-w-2xl mx-auto">Latest updates and highlights from our network.</p>
-      <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <!-- three featured items as before -->
-        <article class="bg-white rounded-xl overflow-hidden card reveal">
-          <a href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/" target="_blank" rel="noopener">
-            <img src="profile.jpg" alt="Fueling Global Progress with Integrity" class="w-full h-48 object-cover" loading="lazy" />
-          </a>
-          <div class="p-6 text-left">
-            <h3 class="text-xl font-semibold mb-2">
-              <a class="hover:underline" href="https://www.linkedin.com/pulse/fueling-global-progress-integrity-neft-oil-trading-journey-fjgie/" target="_blank" rel="noopener">Fueling Global Progress with Integrity</a>
-            </h3>
-            <p id="news1Desc" class="text-gray-600">The NEFT Oil Trading journey.</p>
-            <span id="news1Tag" class="text-gray-400 text-xs mt-3 block">LinkedIn Article</span>
-          </div>
-        </article>
-        <article class="bg-white rounded-xl overflow-hidden card reveal">
-          <a href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank" rel="noopener">
-            <img src="Port-of-Fujairah.jpg" alt="Fujairah Port Expansion" class="w-full h-48 object-cover" loading="lazy" />
-          </a>
-          <div class="p-6 text-left">
-            <h3 class="text-xl font-semibold mb-2"><a class="hover:underline" href="https://uaestories.com/why-fujairahs-port-expansion-could-transform-uaes/" target="_blank" rel="noopener">Why Fujairah’s Port Expansion Could Transform UAE’s Economy</a></h3>
-            <p id="news2Desc" class="text-gray-600">The vision behind the expansion.</p>
-            <span id="news2Tag" class="text-gray-400 text-xs mt-3 block">Article</span>
-          </div>
-        </article>
-        <article class="bg-white rounded-xl overflow-hidden card reveal">
-          <a href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank" rel="noopener">
-            <img src="photous1.jpg" alt="Major U.S Oil Terminals" class="w-full h-48 object-cover" loading="lazy" />
-          </a>
-          <div class="p-6 text-left">
-            <h3 class="text-xl font-semibold mb-2"><a class="hover:underline" href="https://www.marineinsight.com/ports/major-u-s-oil-terminals/" target="_blank" rel="noopener">12 Major U.S Oil Terminals</a></h3>
-            <p id="news3Desc" class="text-gray-600">Top locations for storage & distribution.</p>
-            <span id="news3Tag" class="text-gray-400 text-xs mt-3 block">Article</span>
-          </div>
-        </article>
-      </div>
-      <div class="mt-10">
-        <a href="news.html" class="inline-block px-6 py-3 rounded-md border border-black/10 hover:bg-black hover:text-white transition">View all News & Gallery</a>
-      </div>
+      <div class="mt-10 text-xs uppercase tracking-widest text-gray-300">Hamriyah Free Zone · Sharjah · UAE</div>
     </div>
   </section>
 
   <!-- Products -->
   <section id="products" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 id="productsTitle" class="text-3xl md:text-4xl font-extrabold accent">Our Products</h2>
-      <p id="productsSub" class="mt-4 text-gray-600 max-w-2xl mx-auto">A comprehensive range of high-quality petroleum products to meet diverse industry needs.</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold accent">Our Products</h2>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">A comprehensive range of high-quality petroleum products to meet diverse industry needs.</p>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <template id="productCard">
-          <div class="bg-white rounded-xl border border-black/5 p-6 text-left card">
-            <div class="flex items-center gap-4 mb-3">
-              <div class="w-12 h-12 rounded-full grid place-items-center bg-black text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M12 2c1.5 3.5 7 8.2 7 12.2A7 7 0 1 1 5 14.2C5 10.2 10.5 5.5 12 2Z"/></svg>
-              </div>
-              <span class="text-lg font-semibold"></span>
-            </div>
-            <p class="text-gray-600"></p>
-          </div>
-        </template>
-        <div id="productGrid" class="contents"></div>
+        <div class="bg-white rounded-xl border border-black/5 p-6 text-left card">
+          <h3 class="text-lg font-semibold mb-2">D6 Fuel Oil</h3>
+          <p class="text-gray-600">High-quality fuel oil for industrial applications.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-black/5 p-6 text-left card">
+          <h3 class="text-lg font-semibold mb-2">EN590 (10 PPM)</h3>
+          <p class="text-gray-600">Ultra-low sulfur diesel meeting European standards.</p>
+        </div>
+        <div class="bg-white rounded-xl border border-black/5 p-6 text-left card">
+          <h3 class="text-lg font-semibold mb-2">Crude Oil</h3>
+          <p class="text-gray-600">Unrefined petroleum for refining into various oil products.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
   <section id="about" class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div class="reveal">
-          <h2 id="aboutTitle" class="text-3xl md:text-4xl font-extrabold mb-6 accent">About NEFT OIL TRADING</h2>
-          <p id="aboutP1" class="text-gray-700 mb-4">NEFT OIL TRADING is a global oil trading company with over 25 years of experience. We specialize in trading, distribution, and supply of crude oil and refined petroleum products worldwide.</p>
-          <p id="aboutP2" class="text-gray-700 mb-4">Our network of suppliers, logistics partners, and customers enables reliable and efficient solutions to meet diverse market needs.</p>
-          <p id="aboutP3" class="text-gray-700 mb-6">With a team of experienced professionals, we provide strategic insights and tailored solutions to navigate complex global markets.</p>
-          <ul class="grid grid-cols-2 gap-3 text-sm">
-            <li class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-black"></span> <span id="bullet1">Global Reach</span></li>
-            <li class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-black"></span> <span id="bullet2">Quality Assurance</span></li>
-            <li class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-black"></span> <span id="bullet3">Reliable Delivery</span></li>
-            <li class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-black"></span> <span id="bullet4">Market Expertise</span></li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <div class="bg-black text-white rounded-2xl p-8">
-            <h3 id="officeAddressTitle" class="text-2xl font-semibold mb-6">Office Address</h3>
-            <div class="flex items-start gap-3 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3" fill="currentColor"/></svg>
-              <div>
-                <p class="mb-1"><strong id="officeNoLabel">Office No:</strong> E-25F-08</p>
-                <p class="mb-1"><strong id="locationLabel">Location:</strong> Hamriyah Free Zone</p>
-                <p id="countryLine">Sharjah, United Arab Emirates</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <p>info@neftoiltrading.com</p>
-            </div>
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold accent mb-6">About NEFT OIL TRADING</h2>
+        <p class="text-gray-700 mb-4">NEFT OIL TRADING FZE is a global energy trading company based in Hamriyah Free Zone, Sharjah. With decades of experience, we specialize in trading, logistics, and distribution of petroleum products worldwide.</p>
+        <p class="text-gray-700 mb-4">We prioritize reliability, transparency, and efficiency to ensure smooth supply chain operations from source to destination.</p>
+        <ul class="list-disc pl-5 text-gray-700">
+          <li>Global Reach</li>
+          <li>Reliable Delivery</li>
+          <li>Quality Assurance</li>
+        </ul>
+      </div>
+      <div>
+        <img src="about-photo.jpg" class="rounded-xl shadow-md" alt="About NEFT" />
       </div>
     </div>
   </section>
@@ -204,23 +112,22 @@
   <!-- Leadership -->
   <section id="leadership" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 id="leadershipTitle" class="text-3xl md:text-4xl font-extrabold accent">Our Leadership Team</h2>
-      <p id="leadershipSub" class="mt-4 text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals leading our global operations.</p>
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl border border-black/5 p-6 text-left card reveal">
+      <h2 class="text-3xl md:text-4xl font-extrabold accent mb-6">Our Leadership Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl border border-black/5 p-6 card">
           <h3 class="text-xl font-semibold">Hamad Taryam Alshamsi</h3>
-          <p id="leader1Role" class="text-sm text-gray-500 mb-3">President</p>
-          <p id="leader1Desc" class="text-gray-700">Guiding the organization with a strong commitment to sustainability and forward-thinking leadership.</p>
+          <p class="text-gray-500 mb-2">President</p>
+          <p class="text-gray-700">Leading the company with vision and dedication to sustainability.</p>
         </div>
-        <div class="bg-white rounded-xl border border-black/5 p-6 text-left card reveal">
+        <div class="bg-white rounded-xl border border-black/5 p-6 card">
           <h3 class="text-xl font-semibold">Ali Yousif Bu Sari</h3>
-          <p id="leader2Role" class="text-sm text-gray-500 mb-3">Founder</p>
-          <p id="leader2Desc" class="text-gray-700">Pioneering the company’s global vision with strategic partnerships and industry acumen.</p>
+          <p class="text-gray-500 mb-2">Founder</p>
+          <p class="text-gray-700">Pioneering global partnerships and business development strategy.</p>
         </div>
-        <div class="bg-white rounded-xl border border-black/5 p-6 text-left card reveal">
+        <div class="bg-white rounded-xl border border-black/5 p-6 card">
           <h3 class="text-xl font-semibold">Jasim Mohamed Yousif</h3>
-          <p id="leader3Role" class="text-sm text-gray-500 mb-3">Chief Executive Officer</p>
-          <p id="leader3Desc" class="text-gray-700">Driving progress through innovation, sustainability, and operational excellence.</p>
+          <p class="text-gray-500 mb-2">CEO</p>
+          <p class="text-gray-700">Driving innovation and operational excellence across markets.</p>
         </div>
       </div>
     </div>
@@ -228,219 +135,50 @@
 
   <!-- Contact -->
   <section id="contact" class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center">
-        <h2 id="contactTitle" class="text-3xl md:text-4xl font-extrabold accent">Contact Us</h2>
-        <p id="contactSub" class="mt-4 text-gray-600 max-w-2xl mx-auto">Interested in our products or have inquiries? Fill the form and we’ll get back to you by email.</p>
-      </div>
-      <div class="mt-10 flex justify-center">
-        <form action="https://formsubmit.co/info@neftoiltrading.com" method="POST" class="w-full max-w-2xl bg-white rounded-2xl border border-black/5 shadow-sm p-8 space-y-6">
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="text" name="_honey" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="_subject" value="New inquiry from neftoiltrading.com" />
-          <input type="hidden" name="_template" value="table" />
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label id="labelName" for="name" class="block mb-2">Full Name</label>
-              <input id="name" name="name" required class="w-full px-4 py-3 rounded-md border border-black/10 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black" />
-            </div>
-            <div>
-              <label id="labelEmail" for="email" class="block mb-2">Email Address</label>
-              <input id="email" name="email" type="email" required inputmode="email" class="w-full px-4 py-3 rounded-md border border-black/10 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black" />
-            </div>
-          </div>
-          <div>
-            <label id="labelCompany" for="company" class="block mb-2">Company Name</label>
-            <input id="company" name="company" class="w-full px-4 py-3 rounded-md border border-black/10 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black" />
-          </div>
-          <div>
-            <label id="labelPhone" for="phone" class="block mb-2">Phone Number</label>
-            <input id="phone" name="phone" inputmode="tel" pattern="[+0-9\-\s]{6,}" class="w-full px-4 py-3 rounded-md border border-black/10 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black" />
-          </div>
-          <div>
-            <label id="labelInquiry" for="inquiry" class="block mb-2">Inquiry Type</label>
-            <select id="inquiry" name="inquiry" class="w-full px-4 py-3 rounded-md border border-black/10 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black">
-              <option id="optGeneral" value="General">General Inquiry</option>
-              <option id="optProduct" value="Product">Product Inquiry</option>
-              <option id="optPrice" value="Price">Price Inquiry</option>
-              <option id="optPartner" value="Partnership">Partnership Opportunity</option>
-              <option id="optOther" value="Other">Other</option>
-            </select>
-          </div>
-          <div>
-            <label id="labelMessage" for="message" class="block mb-2">Message</label>
-            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-md border border-black/10 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black"></textarea>
-          </div>
-          <div class="pt-2">
-            <button id="contactSubmit" type="submit" class="w-full md:w-auto px-8 py-3 rounded-md bg-black text-white hover:opacity-90 transition shadow-lg">Send Message</button>
-          </div>
-        </form>
-      </div>
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold accent mb-6">Contact Us</h2>
+      <p class="text-gray-600 mb-10 max-w-2xl mx-auto">For inquiries or partnership opportunities, reach us through our contact form or directly via email.</p>
+      <p class="text-lg">📧 info@neftoiltrading.com</p>
+      <p class="text-lg">🏢 Hamriyah Free Zone, Sharjah, UAE</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white py-14">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div>
-          <div class="text-2xl font-extrabold mb-3">NEFT OIL TRADING</div>
-          <p id="footerTagline" class="text-white/70">Your trusted partner in global oil trading solutions.</p>
-        </div>
-        <div>
-          <h3 id="footerQuickTitle" class="font-semibold mb-3">Quick Links</h3>
-          <ul class="space-y-2 text-white/80">
-            <li><a id="fHome" href="#home" class="hover:text-white">Home</a></li>
-            <li><a id="fProducts" href="#products" class="hover:text-white">Products</a></li>
-            <li><a id="fAbout" href="#about" class="hover:text-white">About Us</a></li>
-            <li><a id="fLeadership" href="#leadership" class="hover:text-white">Leadership</a></li>
-            <li><a id="fContact" href="#contact" class="hover:text-white">Contact</a></li>
-            <li><a id="fNews" href="news.html" class="hover:text-white">News & Gallery</a></li>
-            <li><a id="fScam" href="scam-alert.html" class="text-red-400 font-semibold">⚠ Scam Alert</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 id="footerContactTitle" class="font-semibold mb-3">Contact</h3>
-          <div class="space-y-2 text-white/80">
-            <p>Office No: E-25F-08</p>
-            <p>Hamriyah Free Zone</p>
-            <p>Sharjah, United Arab Emirates</p>
-            <p class="mt-2">info@neftoiltrading.com</p>
-          </div>
-        </div>
+  <footer class="bg-black text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-extrabold text-xl mb-2">NEFT OIL TRADING</h3>
+        <p class="text-white/70">Your trusted partner in global oil trading solutions.</p>
       </div>
-      <div class="border-t border-white/10 mt-10 pt-6 text-center text-white/60">
-        <p>© <span id="year"></span> NEFT OIL TRADING. <span id="rights">All rights reserved.</span></p>
+      <div>
+        <h3 class="font-semibold mb-3">Quick Links</h3>
+        <ul class="space-y-2 text-white/80">
+          <li><a href="#home" class="hover:text-white">Home</a></li>
+          <li><a href="#products" class="hover:text-white">Products</a></li>
+          <li><a href="#about" class="hover:text-white">About Us</a></li>
+          <li><a href="#leadership" class="hover:text-white">Leadership</a></li>
+          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+          <li><a href="news.html" class="hover:text-white">News & Gallery</a></li>
+          <li><a href="scam-alert.html" class="text-red-400 font-semibold">⚠ Scam Alert</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-3">Contact</h3>
+        <p>Office No: E-25F-08</p>
+        <p>Hamriyah Free Zone</p>
+        <p>Sharjah, United Arab Emirates</p>
+        <p class="mt-2">info@neftoiltrading.com</p>
       </div>
     </div>
+    <div class="border-t border-white/10 mt-10 pt-6 text-center text-white/60">
+      <p>© <script>document.write(new Date().getFullYear())</script> NEFT OIL TRADING. All rights reserved.</p>
+    </div>
   </footer>
-
-  <button id="toTop" aria-label="Back to top" class="to-top fixed bottom-6 right-6 z-40 w-10 h-10 rounded-full border border-black/10 bg-white/90 shadow grid place-items-center">↑</button>
 
   <script>
-    // Mobile menu toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
-
-    // Smooth anchor offset
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        if(id === '#' || !document.querySelector(id)) return;
-        e.preventDefault();
-        const navH = document.querySelector('nav').offsetHeight || 80;
-        const y = document.querySelector(id).getBoundingClientRect().top + window.pageYOffset - navH;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        mobileMenu.classList.add('hidden');
-      });
-    });
-
-    // Reveal + count up
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-          const n = entry.target.querySelector('[data-count]');
-          if(n && !n.dataset.done){
-            const end = +n.dataset.count; const dur = 1100; const start = performance.now();
-            const fmt = end >= 1000000 ? (v)=> (v/1000000).toFixed(1).replace(/\.0$/,'') + 'M' : (v)=> v.toLocaleString();
-            requestAnimationFrame(function tick(ts){
-              const p = Math.min(1,(ts-start)/dur); n.textContent = fmt(Math.floor(end*p));
-              if(p<1) requestAnimationFrame(tick); else n.dataset.done = 1;
-            });
-          }
-        }
-      });
-    },{ threshold:.18 });
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-
-    // Back to top
-    const toTop = document.getElementById('toTop');
-    window.addEventListener('scroll',()=>{ if(window.scrollY > 900) toTop.classList.add('show'); else toTop.classList.remove('show'); });
-    toTop.addEventListener('click',()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Products
-    const products = [
-      ['D6','High-quality fuel oil for industrial applications','زيت وقود عالي الجودة للتطبيقات الصناعية'],
-      ['LPG','Liquefied petroleum gas for residential and commercial heating','غاز بترول مسال للتدفئة السكنية والتجارية'],
-      ['LNG','Liquefied natural gas for power generation and industrial use','غاز طبيعي مسال لتوليد الطاقة والاستخدام الصناعي'],
-      ['Jet Oil','Premium aviation fuel meeting international standards','وقود طيران عالي الجودة يلبّي المعايير الدولية'],
-      ['Crude Oil','Unrefined petroleum for refining into various oil products','نفط خام للتكرير إلى منتجات نفطية متعددة'],
-      ['Light Crude','Low-density crude with high API gravity','نفط خام خفيف بكثافة منخفضة ودرجة API عالية'],
-      ['Heavy Crude','High-viscosity crude with low API gravity','نفط خام ثقيل عالي اللزوجة ودرجة API منخفضة'],
-      ['EN590 10 PPM','Ultra-low sulfur diesel meeting European standards','ديزل منخفض الكبريت للغاية وفق المعيار الأوروبي'],
-      ['Gasoline RON 90','Standard octane gasoline for daily use','بنزين أوكتان قياسي للاستخدام اليومي'],
-      ['Gasoline RON 92','Mid-grade gasoline for improved performance','بنزين متوسط الدرجة لأداء محسّن'],
-      ['Gasoline RON 95','Premium gasoline for high-performance engines','بنزين ممتاز للمحركات عالية الأداء'],
-      ['Gasoline RON 98','Ultra-premium gasoline for luxury and sports vehicles','بنزين فائق الجودة للسيارات الفاخرة والرياضية']
-    ];
-    const grid = document.getElementById('productGrid');
-    const tpl = document.getElementById('productCard');
-    function renderProducts(lang){
-      grid.innerHTML = '';
-      const ar = lang==='ar';
-      products.forEach(([name,desc,descAr])=>{
-        const node = tpl.content.cloneNode(true);
-        node.querySelector('span').textContent = name;
-        node.querySelector('p').textContent = ar ? (descAr||desc) : desc;
-        grid.appendChild(node);
-      });
-    }
-
-    // i18n
-    const langBtn = document.getElementById('langBtn');
-    const i18n = {
-      en: {
-        navHome:'Home', navProducts:'Products', navAbout:'About Us', navLeadership:'Leadership', navContact:'Contact',
-        heroTitle:'Global Energy Solutions for a Changing World', heroSubtitle:'Powering progress through strategic energy trading.', heroDiscover:'Discover More', heroContact:'Contact Us', heroTag:'Hamriyah Free Zone · Sharjah · UAE',
-        expLabel:'Years Experience', partnersLabel:'Global Partners', barrelsLabel:'Barrels Traded', countriesLabel:'Countries Served',
-        newsTitle:'News & Gallery', newsSub:'Latest updates and highlights from our network.', news1Desc:'The NEFT Oil Trading journey.', news1Tag:'LinkedIn Article', news2Desc:'The vision behind the expansion.', news2Tag:'Article', news3Desc:'Top locations for storage & distribution.', news3Tag:'Article',
-        productsTitle:'Our Products', productsSub:'A comprehensive range of high-quality petroleum products to meet diverse industry needs.',
-        aboutTitle:'About NEFT OIL TRADING', aboutP1:'NEFT OIL TRADING is a global oil trading company with over 25 years of experience. We specialize in trading, distribution, and supply of crude oil and refined petroleum products worldwide.', aboutP2:'Our network of suppliers, logistics partners, and customers enables reliable and efficient solutions to meet diverse market needs.', aboutP3:'With a team of experienced professionals, we provide strategic insights and tailored solutions to navigate complex global markets.', bullet1:'Global Reach', bullet2:'Quality Assurance', bullet3:'Reliable Delivery', bullet4:'Market Expertise', officeAddressTitle:'Office Address', officeNoLabel:'Office No:', locationLabel:'Location:', countryLine:'Sharjah, United Arab Emirates',
-        leadershipTitle:'Our Leadership Team', leadershipSub:'Meet the experienced professionals leading our global operations.', leader1Role:'President', leader1Desc:'Guiding the organization with a strong commitment to sustainability and forward-thinking leadership.', leader2Role:'Founder', leader2Desc:'Pioneering the company’s global vision with strategic partnerships and industry acumen.', leader3Role:'Chief Executive Officer', leader3Desc:'Driving progress through innovation, sustainability, and operational excellence.',
-        contactTitle:'Contact Us', contactSub:'Interested in our products or have inquiries? Fill the form and we’ll get back to you by email.', labelName:'Full Name', labelEmail:'Email Address', labelCompany:'Company Name', labelPhone:'Phone Number', labelInquiry:'Inquiry Type', labelMessage:'Message', optGeneral:'General Inquiry', optProduct:'Product Inquiry', optPrice:'Price Inquiry', optPartner:'Partnership Opportunity', optOther:'Other', contactSubmit:'Send Message',
-        footerTagline:'Your trusted partner in global oil trading solutions.', footerQuickTitle:'Quick Links', fHome:'Home', fProducts:'Products', fAbout:'About Us', fLeadership:'Leadership', fContact:'Contact', fNews:'News & Gallery', fScam:'⚠ Scam Alert', footerContactTitle:'Contact', rights:'All rights reserved.'
-      },
-      ar: {
-        navHome:'الرئيسية', navProducts:'المنتجات', navAbout:'من نحن', navLeadership:'القيادة', navContact:'اتصل بنا',
-        heroTitle:'حلول طاقة عالمية لعالم متغيّر', heroSubtitle:'تمكين التقدّم عبر تجارة الطاقة الاستراتيجية.', heroDiscover:'اكتشف المزيد', heroContact:'تواصل معنا', heroTag:'منطقة الحمرية الحرة · الشارقة · الإمارات',
-        expLabel:'سنوات من الخبرة', partnersLabel:'شركاء عالميون', barrelsLabel:'براميل مُتداوَلة', countriesLabel:'دول مخدومة',
-        newsTitle:'الأخبار والمعرض', newsSub:'أحدث المستجدات واللقطات من شبكتنا.', news1Desc:'رحلة NEFT Oil Trading.', news1Tag:'مقال على لينكدإن', news2Desc:'الرؤية خلف التوسّع.', news2Tag:'مقال', news3Desc:'أهم المواقع للتخزين والتوزيع.', news3Tag:'مقال',
-        productsTitle:'منتجاتنا', productsSub:'مجموعة شاملة من المنتجات البترولية عالية الجودة لتلبية احتياجات الصناعة المتنوعة.',
-        aboutTitle:'نبذة عن NEFT OIL TRADING', aboutP1:'شركة NEFT OIL TRADING تعمل في تجارة النفط عالميًا منذ أكثر من 25 عامًا، ومتخصصة في تجارة وتوزيع وتوريد النفط الخام والمنتجات البترولية المكررة حول العالم.', aboutP2:'شبكتنا من الموردين وشركاء الخدمات اللوجستية والعملاء تُمكّننا من تقديم حلول موثوقة وفعّالة لتلبية احتياجات السوق المتنوعة.', aboutP3:'بفريق من الخبراء والمحترفين، نقدّم رؤى استراتيجية وحلولًا مخصّصة للتعامل مع تعقيدات الأسواق العالمية.', bullet1:'انتشار عالمي', bullet2:'ضمان الجودة', bullet3:'تسليم موثوق', bullet4:'خبرة سوقية', officeAddressTitle:'عنوان المكتب', officeNoLabel:'رقم المكتب:', locationLabel:'الموقع:', countryLine:'الشارقة، الإمارات العربية المتحدة',
-        leadershipTitle:'فريق القيادة', leadershipSub:'تعرّف على الخبراء الذين يقودون عملياتنا العالمية.', leader1Role:'الرئيس', leader1Desc:'يقود المؤسسة بالتزام قوي بالاستدامة ونهج قيادي متقدّم الفكر.', leader2Role:'المؤسس', leader2Desc:'يرسم الرؤية العالمية للشركة عبر شراكات استراتيجية وخبرة قطاعية.', leader3Role:'الرئيس التنفيذي', leader3Desc:'يدفع عجلة التقدّم من خلال الابتكار والاستدامة والتميّز التشغيلي.',
-        contactTitle:'اتصل بنا', contactSub:'مهتم بمنتجاتنا أو لديك استفسار؟ املأ النموذج وسنتواصل معك عبر البريد الإلكتروني.', labelName:'الاسم الكامل', labelEmail:'البريد الإلكتروني', labelCompany:'اسم الشركة', labelPhone:'رقم الهاتف', labelInquiry:'نوع الاستفسار', labelMessage:'الرسالة', optGeneral:'استفسار عام', optProduct:'استفسار عن منتج', optPrice:'استفسار عن الأسعار', optPartner:'فرصة شراكة', optOther:'أخرى', contactSubmit:'إرسال الرسالة',
-        footerTagline:'شريككم الموثوق لحلول تجارة النفط العالمية.', footerQuickTitle:'روابط سريعة', fHome:'الرئيسية', fProducts:'المنتجات', fAbout:'من نحن', fLeadership:'القيادة', fContact:'اتصل بنا', fNews:'الأخبار والمعرض', fScam:'⚠ تحذير احتيال', footerContactTitle:'تواصل', rights:'جميع الحقوق محفوظة.'
-      }
-    };
-
-    function applyLang(l){
-      const t = i18n[l] || i18n.en;
-      document.documentElement.lang = (l==='ar'?'ar':'en');
-      document.documentElement.dir = (l==='ar'?'rtl':'ltr');
-      langBtn.textContent = (l==='ar'?'EN':'AR');
-      const ids = ['navHome','navProducts','navAbout','navLeadership','navContact','mNavHome','mNavProducts','mNavAbout','mNavLeadership','mNavContact','heroTitle','heroSubtitle','heroDiscover','heroContact','heroTag','expLabel','partnersLabel','barrelsLabel','countriesLabel','newsTitle','newsSub','news1Desc','news1Tag','news2Desc','news2Tag','news3Desc','news3Tag','productsTitle','productsSub','aboutTitle','aboutP1','aboutP2','aboutP3','bullet1','bullet2','bullet3','bullet4','officeAddressTitle','officeNoLabel','locationLabel','countryLine','leadershipTitle','leadershipSub','leader1Role','leader1Desc','leader2Role','leader2Desc','leader3Role','leader3Desc','contactTitle','contactSub','labelName','labelEmail','labelCompany','labelPhone','labelInquiry','labelMessage','optGeneral','optProduct','optPrice','optPartner','optOther','contactSubmit','footerTagline','footerQuickTitle','fHome','fProducts','fAbout','fLeadership','fContact','fNews','fScam','footerContactTitle','rights'];
-      ids.forEach(id=>{ const el = document.getElementById(id); if(el && t[id]) el.textContent = t[id]; });
-      renderProducts(l);
-      localStorage.setItem('lang', l);
-    }
-
-    // Init
-    applyLang(localStorage.getItem('lang')||'en');
-    langBtn.addEventListener('click',()=>{ const next = (localStorage.getItem('lang')||'en')==='en'?'ar':'en'; applyLang(next); });
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
   </script>
-</body>
-</html>
-
-  <footer class="py-10 border-t">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-      <p>© <script>document.write(new Date().getFullYear())</script> NEFT OIL TRADING</p>
-    </div>
-  </footer>
 </body>
 </html>
