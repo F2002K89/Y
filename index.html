@@ -51,7 +51,7 @@
           <a href="#leadership" class="hover:opacity-80">Leadership</a>
           <a href="#contact" class="hover:opacity-80">Contact</a>
         </div>
-        <button id="menuBtn" class="md:hidden border border-black/10 rounded-full w-10 h-10 grid place-items-center">
+        <button id="menuBtn" class="md:hidden border border-black/10 rounded-full w-10 h-10 grid place-items-center" aria-label="Open menu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
@@ -67,9 +67,9 @@
   </nav>
 
   <!-- HERO (image only) -->
-  <section id="home" class="hero-wrap">
+  <section id="home" class="hero-wrap" aria-label="Hero image">
     <div id="heroImg" class="hero-img"></div>
-    <div class="hero-vignette"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
   </section>
 
   <!-- HERO TEXT BELOW -->
@@ -90,7 +90,7 @@
   </section>
 
   <!-- STATS -->
-  <section class="py-12 bg-gray-50">
+  <section class="py-12 bg-gray-50" aria-label="Company stats">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div class="p-6 reveal">
@@ -114,7 +114,7 @@
   </section>
 
   <!-- FEATURED NEWS -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-white" aria-label="Featured news">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Media Center</h2>
       <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Highlights from our network. See more on the News page.</p>
@@ -149,13 +149,11 @@
           </div>
         </article>
       </div>
-      <div class="mt-10">
-      </div>
     </div>
   </section>
 
   <!-- PRODUCTS (12 items) -->
-  <section id="products" class="py-16 bg-gray-50">
+  <section id="products" class="py-16 bg-gray-50" aria-label="Products">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Our Products</h2>
       <p class="mt-4 text-gray-600 max-w-2xl mx-auto">A comprehensive range of high-quality petroleum products to meet diverse industry needs.</p>
@@ -178,7 +176,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-16 bg-white">
+  <section id="about" class="py-16 bg-white" aria-label="About">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
       <div class="reveal">
         <h2 class="text-3xl md:text-4xl font-extrabold accent mb-6">About NEFT OIL TRADING</h2>
@@ -199,7 +197,7 @@
   </section>
 
   <!-- LEADERSHIP -->
-  <section id="leadership" class="py-16 bg-gray-50">
+  <section id="leadership" class="py-16 bg-gray-50" aria-label="Leadership">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Our Leadership Team</h2>
       <p class="mt-4 text-gray-600">Meet the experienced professionals leading our global operations.</p>
@@ -224,7 +222,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-16 bg-white">
+  <section id="contact" class="py-16 bg-white" aria-label="Contact">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-extrabold accent">Contact Us</h2>
       <p class="mt-4 text-gray-600">Fill out the form and our team will respond promptly.</p>
@@ -330,11 +328,6 @@
       const y = window.scrollY * 0.25; // slower than scroll
       hero.style.transform = `translateY(${y}px) scale(1.12)`; // keep slight zoomed state
     }, {passive:true});
-  </script>
-</body>
-</html>
-
-    renderProducts();
   </script>
 </body>
 </html>
