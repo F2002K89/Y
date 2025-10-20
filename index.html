@@ -445,6 +445,56 @@
   <button id="toTop" class="to-top fixed bottom-6 right-6 w-10 h-10 rounded-full border border-black/10 bg-white/90 shadow grid place-items-center" aria-label="Back to top">↑</button>
 
   <script>
+    <script>
+/* ========= EDIT ONLY THIS LIST =========
+ * type: 'annual' -> repeats every year by MM-DD
+ *        'oneoff' -> a single YYYY-MM-DD date
+ */
+const SPECIAL_DAYS = [
+  // UAE Flag Day: Nov 3 (every year)
+  { type: 'annual', mmdd: '11-03', title: 'UAE Flag Day 🇦🇪',
+    message: 'We proudly observe UAE Flag Day today. Replies may be slower.' },
+
+  // UAE National Day: Dec 2–3 (every year). Add two “annual” entries.
+  { type: 'annual', mmdd: '12-02', title: 'UAE National Day 🇦🇪',
+    message: 'Happy UAE National Day! Our offices are observing the holiday.' },
+  { type: 'annual', mmdd: '12-03', title: 'UAE National Day 🇦🇪',
+    message: 'We are observing UAE National Day. Normal operations resume next business day.' },
+
+  // Example one-off date (change/remove as needed)
+  // { type: 'oneoff', date: '2025-04-10', title: 'Eid al-Fitr',
+  //   message: 'Eid Mubarak! Limited availability today.' },
+];
+/* ========= STOP EDITING ========= */
+
+(function showSpecialDayPopup(){
+  const today = new Date();
+  const y = today.getFullYear();
+  const m = String(today.getMonth()+1).padStart(2,'0');
+  const d = String(today.getDate()).padStart(2,'0');
+  const yyyy_mm_dd = `${y}-${m}-${d}`;
+  const mm_dd = `${m}-${d}`;
+
+  // find a match (first match wins)
+  const hit = SPECIAL_DAYS.find(item =>
+    (item.type === 'annual'  && item.mmdd === mm_dd) ||
+    (item.type === 'oneoff' && item.date === yyyy_mm_dd)
+  );
+  if (!hit) return;
+
+  // fill and show modal
+  const modal = document.getElementById('dayModal');
+  document.getElementById('dayTitle').textContent = hit.title || 'Notice';
+  document.getElementById('dayMsg').textContent   = hit.message || '';
+  modal.classList.remove('hidden');
+
+  const close = () => modal.classList.add('hidden');
+  document.getElementById('dayOk').addEventListener('click', close, { once:true });
+  document.getElementById('dayClose').addEventListener('click', close, { once:true });
+  modal.addEventListener('click', (e)=> { if (e.target === modal) close(); }, { once:true });
+})();
+</script>
+
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -512,5 +562,23 @@
     bindParallax();
     window.addEventListener('resize', bindParallax);
   </script>
+<!-- Simple Holiday Popup -->
+<div id="dayModal" class="fixed inset-0 z-[100] hidden">
+  <!-- backdrop -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- dialog -->
+  <div role="dialog" aria-modal="true"
+       class="relative mx-auto my-10 w-[92%] max-w-md rounded-2xl bg-white shadow-2xl p-6">
+    <div class="flex items-start justify-between gap-3">
+      <h3 id="dayTitle" class="text-xl font-bold">Notice</h3>
+      <button id="dayClose" class="w-9 h-9 grid place-items-center rounded-full border border-black/10" aria-label="Close">✕</button>
+    </div>
+    <p id="dayMsg" class="mt-3 text-gray-700"></p>
+    <div class="mt-5 text-right">
+      <button id="dayOk" class="px-4 py-2 rounded-md bg-black text-white hover:opacity-90">OK</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
