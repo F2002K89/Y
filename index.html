@@ -512,5 +512,63 @@
     bindParallax();
     window.addEventListener('resize', bindParallax);
   </script>
+  <!-- ===== Holiday / Celebration Popup (X-only version) ===== -->
+<div id="holidayModal" class="fixed inset-0 z-[100] hidden">
+  <!-- backdrop -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- dialog -->
+  <div role="dialog" aria-modal="true"
+       class="relative mx-auto my-10 w-[92%] max-w-md rounded-2xl bg-white shadow-2xl overflow-hidden">
+    
+    <!-- Optional banner image -->
+    <img id="holidayImg" src="" alt="" class="w-full h-36 object-cover hidden"/>
+
+    <button id="holidayClose" aria-label="Close"
+            class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-full border border-black/10 hover:bg-black/5">
+      ✕
+    </button>
+
+    <div class="p-6 pt-4">
+      <h3 id="holidayTitle" class="text-xl font-bold">Notice</h3>
+      <p id="holidayMsg" class="mt-3 text-gray-700"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   UAE Holidays & Celebrations Popup (X-only)
+========================================================= */
+const SPECIAL_DAYS = [
+  { mmdd: '10-21', title: 'UAE Flag Day 🇦🇪', message: 'Today, we honor the symbol of unity, pride, and strength that represents our beloved nation — the UAE flag.', img: 'flag-day.jpg' },
+  { mmdd: '11-30', title: "Commemoration Day (Martyrs’ Day) 🇦🇪", message: 'We honor the UAE’s heroes today.', img: 'martyrs-day.jpg' },
+  { mmdd: '12-02', title: 'UAE National Day 🇦🇪', message: 'Happy UAE National Day! Wishing everyone a joyous celebration.', img: 'uae-national-day.jpg' },
+  { mmdd: '12-03', title: 'UAE National Day 🇦🇪', message: 'We continue the National Day celebrations today.', img: 'uae-national-day.jpg' },
+  { mmdd: '01-01', title: 'Happy New Year 🎉', message: 'Wishing you a prosperous and successful year ahead!', img: 'new-year.jpg' },
+];
+
+(function showHolidayPopupOncePerDay(){
+  const today = new Date();
+  const key = `holidayPopup-${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+  if (localStorage.getItem(key)) return;
+
+  const mmdd = String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+  const hit = SPECIAL_DAYS.find(x => x.mmdd === mmdd);
+  if (!hit) return;
+
+  const modal = document.getElementById('holidayModal');
+  const imgEl = document.getElementById('holidayImg');
+  document.getElementById('holidayTitle').textContent = hit.title;
+  document.getElementById('holidayMsg').textContent = hit.message;
+  if (hit.img) { imgEl.src = hit.img; imgEl.classList.remove('hidden'); } else { imgEl.classList.add('hidden'); }
+
+  modal.classList.remove('hidden');
+  const close = () => { modal.classList.add('hidden'); localStorage.setItem(key, '1'); };
+  document.getElementById('holidayClose').addEventListener('click', close, {once:true});
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+})();
+</script>
+<!-- ===== End Popup ===== -->
 </body>
 </html>
