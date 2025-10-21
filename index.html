@@ -605,7 +605,8 @@ const SPECIAL_DAYS = [
 (function showPopup(){
   const today = new Date();
   const mmdd = String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
-  const hit = SPECIAL_DAYS.find(x => x.mmdd === mmdd) || SPECIAL_DAYS[0]; // fallback to first for testing
+  const hit = SPECIAL_DAYS.find(x => x.mmdd === '10-21'); // UAE Flag Day
+
 
   const modal = document.getElementById('holidayModal');
   const imgEl = document.getElementById('holidayImg');
