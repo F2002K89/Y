@@ -563,22 +563,49 @@
 </div>
 
 <script>
-/* =========================================================
-   UAE Holidays & Celebrations Popup (always shows)
-========================================================= */
+<!-- ===== Always Show UAE Celebration Popup ===== -->
+<div id="holidayModal" class="fixed inset-0 z-[100] hidden">
+  <!-- dark background -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- popup box -->
+  <div role="dialog" aria-modal="true"
+       class="relative mx-auto my-10 w-[92%] max-w-md rounded-2xl bg-white shadow-2xl overflow-hidden">
+    
+    <!-- optional image -->
+    <img id="holidayImg" src="" alt="" class="w-full h-36 object-cover hidden"/>
+
+    <!-- close button -->
+    <button id="holidayClose" aria-label="Close"
+            class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-full border border-black/10 hover:bg-black/5 text-xl">
+      ✕
+    </button>
+
+    <div class="p-6 pt-4">
+      <h3 id="holidayTitle" class="text-xl font-bold">UAE Celebration 🇦🇪</h3>
+      <p id="holidayMsg" class="mt-3 text-gray-700">We proudly celebrate the spirit of the United Arab Emirates.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   UAE Holiday Popup (Always shows on page load)
+   Add your celebration days + optional image filenames
+===================================================== */
 const SPECIAL_DAYS = [
-  { mmdd: '10-21', title: 'UAE Flag Day 🇦🇪', message: 'Today, we honor the symbol of unity, pride, and strength that represents our beloved nation — the UAE flag.', img: 'flag-day.jpg' },
-  { mmdd: '11-30', title: "Commemoration Day (Martyrs’ Day) 🇦🇪", message: 'We honor the UAE’s heroes today.', img: 'martyrs-day.jpg' },
-  { mmdd: '12-02', title: 'UAE National Day 🇦🇪', message: 'Happy UAE National Day! Wishing everyone a joyous celebration.', img: 'uae-national-day.jpg' },
-  { mmdd: '12-03', title: 'UAE National Day 🇦🇪', message: 'We continue the UAE National Day celebrations today.', img: 'uae-national-day.jpg' },
+  { mmdd: '10-21', title: 'UAE Flag Day 🇦🇪', message: 'We proudly observe UAE Flag Day today.', img: 'flag-day.jpg' },
+  { mmdd: '11-30', title: "Commemoration Day (Martyrs’ Day) 🇦🇪", message: 'We honor the UAE’s brave heroes today.', img: 'martyrs-day.jpg' },
+  { mmdd: '12-02', title: 'UAE National Day 🇦🇪', message: 'Happy UAE National Day! Wishing you joy and pride in our nation.', img: 'uae-national-day.jpg' },
+  { mmdd: '12-03', title: 'UAE National Day 🇦🇪', message: 'Celebrating the continued spirit of the UAE.', img: 'uae-national-day.jpg' },
   { mmdd: '01-01', title: 'Happy New Year 🎉', message: 'Wishing you a prosperous and successful year ahead!', img: 'new-year.jpg' },
 ];
 
-(function showHolidayPopup(){
+// Always show popup (you can force any date by changing mmdd below)
+(function showPopup(){
   const today = new Date();
   const mmdd = String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
-  const hit = SPECIAL_DAYS.find(x => x.mmdd === mmdd);
-  if (!hit) return;
+  const hit = SPECIAL_DAYS.find(x => x.mmdd === mmdd) || SPECIAL_DAYS[0]; // fallback to first for testing
 
   const modal = document.getElementById('holidayModal');
   const imgEl = document.getElementById('holidayImg');
@@ -588,10 +615,9 @@ const SPECIAL_DAYS = [
 
   modal.classList.remove('hidden');
   const close = () => modal.classList.add('hidden');
-  document.getElementById('holidayClose').addEventListener('click', close, {once:true});
-  modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+  document.getElementById('holidayClose').addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
 })();
 </script>
-<!-- ===== End Always-Show Popup ===== -->
 </body>
 </html>
