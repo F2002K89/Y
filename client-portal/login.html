@@ -6,8 +6,10 @@
   <title>Client Portal — Login / Register</title>
   <link href="https://cdn.tailwindcss.com" rel="stylesheet">
 </head>
+
 <body class="bg-gray-50 min-h-screen flex items-center justify-center">
   <div class="max-w-md w-full p-6 bg-white rounded-lg shadow">
+    
     <h1 class="text-2xl font-bold mb-4 text-center">Client Portal</h1>
 
     <div id="messages" class="mb-4 text-sm text-red-600"></div>
@@ -17,12 +19,14 @@
       <button id="showRegister" class="px-4 py-2 border rounded">Register</button>
     </div>
 
+    <!-- Login Form -->
     <form id="loginForm" class="space-y-4">
       <input id="loginEmail" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
       <input id="loginPassword" type="password" placeholder="Password" required class="w-full p-2 border rounded" />
       <button type="submit" class="w-full bg-black text-white py-2 rounded">Sign in</button>
     </form>
 
+    <!-- Register Form -->
     <form id="registerForm" class="space-y-4 hidden">
       <input id="regName" type="text" placeholder="Full name" required class="w-full p-2 border rounded" />
       <input id="regEmail" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
@@ -33,81 +37,96 @@
     <p class="mt-4 text-xs text-gray-500 text-center">
       After login you will be taken to the dashboard. KYC is required before submitting requests.
     </p>
+
   </div>
 
-<script>
-  // UI toggles
-  const showLoginBtn = document.getElementById('showLogin');
-  const showRegisterBtn = document.getElementById('showRegister');
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const messages = document.getElementById('messages');
+  <script>
+    // UI toggles
+    const showLoginBtn = document.getElementById('showLogin');
+    const showRegisterBtn = document.getElementById('showRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const messages = document.getElementById('messages');
 
-  showLoginBtn.addEventListener('click', ()=> {
-    loginForm.classList.remove('hidden');
-    registerForm.classList.add('hidden');
-    messages.textContent = '';
-  });
-  showRegisterBtn.addEventListener('click', ()=> {
-    registerForm.classList.remove('hidden');
-    loginForm.classList.add('hidden');
-    messages.textContent = '';
-  });
-
-  // POST helper
-  async function postJson(url, data, headers = {}) {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: Object.assign({'Content-Type':'application/json'}, headers),
-      body: JSON.stringify(data)
+    showLoginBtn.addEventListener('click', () => {
+      loginForm.classList.remove('hidden');
+      registerForm.classList.add('hidden');
+      messages.textContent = '';
     });
-    const text = await res.text();
-    let json;
-    try { json = JSON.parse(text); } catch { json = { raw: text, ok: res.ok }; }
-    if (!res.ok) throw json;
-    return json;
-  }
 
-  // Register
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('regName').value.trim();
-    const email = document.getElementById('regEmail').value.trim();
-    const password = document.getElementById('regPassword').value;
-    messages.textContent = '';
-    try {
-      const j = await postJson('/api/auth/register', { name, email, password });
-      // server should return { token, user }
-      localStorage.setItem('client_token', j.token);
-      localStorage.setItem('client_email', j.user.email);
-      window.location.href = '/client-portal/dashboard.html';
-    } catch (err) {
-      messages.textContent = err.message || JSON.stringify(err);
-    }
-  });
+    showRegisterBtn.addEventListener('click', () => {
+      registerForm.classList.remove('hidden');
+      loginForm.classList.add('hidden');
+      messages.textContent = '';
+    });
 
-  // Login
-  document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    messages.textContent = '';
-    try {
-      const j = await postJson('/api/auth/login', { email, password });
-      localStorage.setItem('client_token', j.token);
-      localStorage.setItem('client_email', j.user.email);
-      window.location.href = '/client-portal/dashboard.html';
-    } catch (err) {
-      messages.textContent = err.message || JSON.stringify(err);
-    }
-  });
+    // POST helper
+    async function postJson(url, data, headers = {}) {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, headers),
+        body: JSON.stringify(data)
+      });
 
-  // If already logged in, go to dashboard
-  (function check() {
-    if (localStorage.getItem('client_token')) {
-      window.location.href = '/client-portal/dashboard.html';
+      const text = await res.text();
+      let json;
+
+      try {
+        json = JSON.parse(text);
+      } catch {
+        json = { raw: text, ok: res.ok };
+      }
+
+      if (!res.ok) throw json;
+      return json;
     }
-  })();
-</script>
+
+    // Register
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+
+      messages.textContent = '';
+
+      try {
+        const j = await postJson('/api/auth/register', { name, email, password });
+        localStorage.setItem('client_token', j.token);
+        localStorage.setItem('client_email', j.user.email);
+        window.location.href = '/client-portal/dashboard.html';
+      } catch (err) {
+        messages.textContent = err.message || JSON.stringify(err);
+      }
+    });
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      messages.textContent = '';
+
+      try {
+        const j = await postJson('/api/auth/login', { email, password });
+        localStorage.setItem('client_token', j.token);
+        localStorage.setItem('client_email', j.user.email);
+        window.location.href = '/client-portal/dashboard.html';
+      } catch (err) {
+        messages.textContent = err.message || JSON.stringify(err);
+      }
+    });
+
+    // Auto-redirect if already logged in
+    (function check() {
+      if (localStorage.getItem('client_token')) {
+        window.location.href = '/client-portal/dashboard.html';
+      }
+    })();
+  </script>
+
 </body>
 </html>
