@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Client Dashboard</title>
+  <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+  <style>
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
+    <!-- Left sidebar -->
+    <aside class="md:col-span-1 bg-white p-4 rounded shadow">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <div class="font-bold">Client Dashboard</div>
+          <div class="text-sm text-gray-500" id="userEmail">—</div>
+        </div>
+        <button id="logoutBtn" class="text-sm text-red-600">Sign out</button>
+      </div>
+
+      <nav class="space-y-2 text-sm">
+        <a href="#products" class="block px-3 py-2 rounded hover:bg-gray-100">Products</a>
+        <a href="#orders" class="block px-3 py-2 rounded hover:bg-gray-100">Orders</a>
+        <a href="#kyc" class="block px-3 py-2 rounded bg-black text-white">KYC</a>
+        <a href="#support" class="block px-3 py-2 rounded hover:bg-gray-100">Support</a>
+      </nav>
+    </aside>
+
+    <!-- Main area -->
+    <main class="md:col-span-3">
+      <!-- PRODUCTS (simple placeholder) -->
+      <section id="products" class="mb-6 bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Products</h2>
+        <p class="text-sm text-gray-600 mb-4">Browse our product catalog (placeholder).</p>
+        <!-- placeholder cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 border rounded">Crude Oil</div>
+          <div class="p-4 border rounded">Gasoline RON 95</div>
+          <div class="p-4 border rounded">Jet Oil</div>
+          <div class="p-4 border rounded">LNG</div>
+        </div>
+      </section>
+
+      <!-- KYC SECTION -->
+      <section id="kyc" class="bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">KYC Verification</h2>
+        <p class="text-sm text-gray-600 mb-4">You must complete KYC before making trading requests.</p>
+
+        <div class="mb-4">
+          <div class="inline-block px-3 py-1 rounded text-sm" id="kycStatusBadge">Loading...</div>
+        </div>
+
+        <div class="flex gap-3 items-center">
+          <button id="startKycBtn" class="px-4 py-2 bg-black text-white rounded">Start KYC</button>
+          <div id="kycInfo" class="text-sm text-gray-600"></div>
+        </div>
+
+        <div class="mt-6">
+          <h3 class="text-base font-medium mb-2">Request Submission</h3>
+          <p id="requestNote" class="text-sm text-gray-500 mb-2">Requests are disabled until KYC is approved.</p>
+          <textarea id="requestText" rows="4" class="w-full p-2 border rounded" placeholder="Describe your request"></textarea>
+          <div class="flex gap-3 mt-3">
+            <button id="submitReqBtn" class="px-4 py-2 bg-blue-600 text-white rounded" disabled>Submit Request</button>
+            <div id="reqResult" class="text-sm text-green-600"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+<script>
+  // Helpers
+  function getToken() { return localStorage.getItem('client_token'); }
+  function getEmail() { return localStorage.getItem('client_email') || ''; }
+  if (!getToken()) {
+    // not logged in -> redirect to login
+    window.location.href = '/client-portal/login.html';
+  }
+
+  document.getElementById('userEmail').textContent = getEmail();
+
+  // Elements
+  const kycStatusBadge = document.getElementById('kycStatusBadge');
+  const kycInfo = document.getElementById('kycInfo');
+  const startKycBtn = document.getElementById('startKycBtn');
+  const submitReqBtn = document.getElementById('submitReqBtn');
+  const requestText = document.getElementById('requestText');
+  const reqResult = document.getElementById('reqResult');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  logoutBtn.addEventListener('click', ()=> {
+    localStorage.removeItem('client_token');
+    localStorage.removeItem('client_email');
+    window.location.href = '/client-portal/login.html';
+  });
+
+  // Fetch helper with token
+  async function authFetch(url, opts = {}) {
+    const token = getToken();
+    if (!opts.headers) opts.headers = {};
+    opts.headers['Authorization'] = 'Bearer ' + token;
+    const res = await fetch(url, opts);
+    if (res.status === 401) {
+      // token expired or invalid
+      localStorage.removeItem('client_token');
+      localStorage.removeItem('client_email');
+      window.location.href = '/client-portal/login.html';
+      throw new Error('Unauthorized');
+    }
+    const text = await res.text();
+    try { return JSON.parse(text); } catch { return text; }
+  }
+
+  // Poll KYC status
+  async function updateKycStatus() {
+    try {
+      const j = await authFetch('/api/kyc/status', { method: 'GET' });
+      const s = j.kycStatus || 'not_started';
+      kycInfo.textContent = j.providerRef ? ('Ref: ' + j.providerRef) : '';
+      kycStatusBadge.textContent = s.toUpperCase();
+      kycStatusBadge.className = 'inline-block px-3 py-1 rounded text-sm ' + (s === 'approved' ? 'bg-green-100 text-green-800' : s === 'rejected' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800');
+      if (s === 'approved') {
+        submitReqBtn.disabled = false;
+        requestText.disabled = false;
+        startKycBtn.disabled = true;
+      } else if (s === 'in_progress' || s === 'manual_review') {
+        submitReqBtn.disabled = true;
+        requestText.disabled = true;
+        startKycBtn.disabled = true;
+      } else {
+        // not_started / unknown / rejected
+        submitReqBtn.disabled = true;
+        requestText.disabled = true;
+        startKycBtn.disabled = false;
+      }
+    } catch (err) {
+      kycStatusBadge.textContent = 'Status unavailable';
+      kycInfo.textContent = '';
+      startKycBtn.disabled = false;
+    }
+  }
+
+  // Start KYC flow
+  startKycBtn.addEventListener('click', async () => {
+    startKycBtn.disabled = true;
+    startKycBtn.textContent = 'Starting...';
+    try {
+      const body = JSON.stringify({ name: '' });
+      const resp = await authFetch('/api/kyc/start', { method: 'POST', body, headers: { 'Content-Type': 'application/json' } });
+      // provider should return verificationUrl or providerResponse
+      if (resp.verificationUrl) {
+        window.location.href = resp.verificationUrl;
+      } else {
+        // show raw response for debugging / provider might require building URL
+        alert('Provider response: ' + JSON.stringify(resp.providerResponse || resp));
+        console.log('Provider response', resp.providerResponse || resp);
+      }
+    } catch (err) {
+      alert('Failed to start KYC: ' + (err.message || JSON.stringify(err)));
+    } finally {
+      startKycBtn.disabled = false;
+      startKycBtn.textContent = 'Start KYC';
+      updateKycStatus();
+    }
+  });
+
+  // Submit a request (only allowed if approved)
+  submitReqBtn.addEventListener('click', async () => {
+    const text = requestText.value.trim();
+    if (!text) return alert('Describe your request.');
+    submitReqBtn.disabled = true;
+    reqResult.textContent = '';
+    try {
+      // Example: POST to protected endpoint /api/requests (not implemented server-side here)
+      // For now we simulate saving locally and show success only if KYC approved on server.
+      const status = (await authFetch('/api/kyc/status', { method: 'GET' })).kycStatus;
+      if (status !== 'approved') {
+        alert('KYC not approved yet. You cannot submit requests.');
+      } else {
+        // Simulate request submission (replace with your /api/requests endpoint)
+        // await authFetch('/api/requests', { method:'POST', body: JSON.stringify({ text }), headers:{'Content-Type':'application/json'} });
+        reqResult.textContent = 'Request submitted (simulation)';
+        requestText.value = '';
+      }
+    } catch (err) {
+      reqResult.textContent = 'Submit failed';
+    } finally {
+      submitReqBtn.disabled = false;
+    }
+  });
+
+  // Initial load and polling
+  updateKycStatus();
+  setInterval(updateKycStatus, 15000);
+</script>
+</body>
+</html>
