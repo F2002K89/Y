@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Client Portal — Login / Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="../logo.png" type="image/png">
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center font-sans">
+  <main class="w-full max-w-md p-8 bg-white rounded-2xl shadow">
+    <div class="flex items-center gap-4 mb-4">
+      <img src="../logo.png" alt="NEFT logo" class="h-10 w-10 object-contain">
+      <h1 class="text-xl font-bold">Client Portal</h1>
+    </div>
+
+    <div class="mb-4 text-sm text-gray-600">
+      <button id="tabLogin" class="px-3 py-1 font-semibold border-b-2 border-black">Login</button>
+      <button id="tabRegister" class="px-3 py-1 text-gray-600">Register</button>
+    </div>
+
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-sm">Email</label>
+        <input id="loginEmail" type="email" required class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="you@company.com">
+      </div>
+      <div>
+        <label class="block text-sm">Password</label>
+        <input id="loginPass" type="password" required class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="••••••">
+      </div>
+      <div>
+        <button type="submit" class="w-full bg-black text-white py-2 rounded-md font-semibold">Sign in</button>
+      </div>
+      <div id="loginMsg" class="text-sm text-red-600 hidden"></div>
+    </form>
+
+    <form id="registerForm" class="space-y-4 hidden">
+      <div>
+        <label class="block text-sm">Full name</label>
+        <input id="regName" type="text" required class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="Your name">
+      </div>
+      <div>
+        <label class="block text-sm">Email</label>
+        <input id="regEmail" type="email" required class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="you@company.com">
+      </div>
+      <div>
+        <label class="block text-sm">Password</label>
+        <input id="regPass" type="password" required class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="Choose a password">
+      </div>
+      <div>
+        <button id="regBtn" type="submit" class="w-full bg-green-600 text-white py-2 rounded-md font-semibold">Create account</button>
+      </div>
+      <div id="regMsg" class="text-sm text-green-600 hidden"></div>
+    </form>
+
+    <div class="mt-4 text-center text-sm text-gray-600">
+      <a href="../" class="text-blue-600">Back to site</a>
+    </div>
+  </main>
+
+  <script>
+    // tabs
+    const tabLogin = document.getElementById('tabLogin');
+    const tabRegister = document.getElementById('tabRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    function showLogin(){ tabLogin.classList.add('border-black'); tabRegister.classList.remove('border-black'); loginForm.classList.remove('hidden'); registerForm.classList.add('hidden'); }
+    function showRegister(){ tabRegister.classList.add('border-black'); tabLogin.classList.remove('border-black'); registerForm.classList.remove('hidden'); loginForm.classList.add('hidden'); }
+    tabLogin.addEventListener('click', showLogin);
+    tabRegister.addEventListener('click', showRegister);
+
+    // Demo storage helpers (NOT secure for production)
+    function saveUser(email, password, name){
+      const users = JSON.parse(localStorage.getItem('demo_users')||'{}');
+      users[email] = { password, name, created: Date.now() };
+      localStorage.setItem('demo_users', JSON.stringify(users));
+    }
+    function getUser(email){ const users = JSON.parse(localStorage.getItem('demo_users')||'{}'); return users[email]; }
+
+    // Register
+    document.getElementById('registerForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('regPass').value;
+      const name = document.getElementById('regName').value.trim();
+      const msg = document.getElementById('regMsg');
+      msg.classList.add('hidden');
+
+      if (getUser(email)) {
+        msg.textContent = 'An account with that email already exists.';
+        msg.classList.remove('hidden');
+        return;
+      }
+      // demo: store in localStorage and auto-login
+      saveUser(email, pass, name);
+      localStorage.setItem('client_token', btoa(email + ':' + pass)); // demo token
+      localStorage.setItem('client_email', email);
+      window.location.href = './dashboard.html';
+    });
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('loginPass').value;
+      const msg = document.getElementById('loginMsg');
+      msg.classList.add('hidden');
+
+      const user = getUser(email);
+      if (!user || user.password !== pass){
+        msg.textContent = 'Invalid email or password (demo).';
+        msg.classList.remove('hidden');
+        return;
+      }
+      localStorage.setItem('client_token', btoa(email + ':' + pass)); // demo token
+      localStorage.setItem('client_email', email);
+      window.location.href = './dashboard.html';
+    });
+
+    // Prefill demo account button (optional)
+    // You can uncomment to create a demo user automatically
+    // saveUser('client@example.com','Demo1234','Demo Client');
+  </script>
+</body>
+</html>
