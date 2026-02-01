@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Client Dashboard — Editor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="../logo.png" type="image/png">
+  <!-- Ace editor CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js" integrity="" crossorigin="anonymous"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans">
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="../logo.png" alt="NEFT" class="h-8 w-8">
+        <h1 class="text-lg font-semibold">Client Dashboard</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="userEmail" class="text-sm text-gray-600"></span>
+        <button id="logout" class="text-sm text-red-600">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <div class="bg-white rounded-xl p-6 shadow">
+      <h2 class="text-xl font-bold mb-2">Code Editor</h2>
+      <p class="text-gray-600 mb-4">Write code below. This is a demo editor using Ace. Save to localStorage or download the file.</p>
+
+      <div class="mb-3 flex gap-2">
+        <select id="mode" class="border px-2 py-1 rounded">
+          <option value="javascript">JavaScript</option>
+          <option value="html">HTML</option>
+          <option value="python">Python</option>
+          <option value="css">CSS</option>
+        </select>
+        <button id="saveLocal" class="bg-green-600 text-white px-3 py-1 rounded">Save to browser</button>
+        <button id="download" class="bg-blue-600 text-white px-3 py-1 rounded">Download .txt</button>
+      </div>
+
+      <div id="editor" style="height:420px;border:1px solid #e5e7eb;border-radius:8px;"></div>
+    </div>
+  </main>
+
+  <script>
+    // Simple auth guard (demo only)
+    const token = localStorage.getItem('client_token');
+    if (!token) {
+      window.location.href = './login.html';
+    }
+
+    const email = localStorage.getItem('client_email') || '';
+    document.getElementById('userEmail').textContent = email;
+
+    document.getElementById('logout').addEventListener('click', ()=>{
+      localStorage.removeItem('client_token');
+      localStorage.removeItem('client_email');
+      window.location.href = './login.html';
+    });
+
+    // Setup Ace editor
+    const editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setValue('// Start coding...\n', 1);
+    editor.setOptions({fontSize: 14, showPrintMargin: false});
+
+    // Mode selector
+    const modeSel = document.getElementById('mode');
+    modeSel.addEventListener('change', () => {
+      const m = modeSel.value;
+      const modeMap = {javascript:'ace/mode/javascript', html:'ace/mode/html', python:'ace/mode/python', css:'ace/mode/css'};
+      editor.session.setMode(modeMap[m] || 'ace/mode/javascript');
+    });
+
+    // Save to localStorage
+    document.getElementById('saveLocal').addEventListener('click', () => {
+      const key = 'client_code_' + (localStorage.getItem('client_email') || 'anon');
+      localStorage.setItem(key, editor.getValue());
+      alert('Saved to browser storage ('+key+').');
+    });
+
+    // Download file
+    document.getElementById('download').addEventListener('click', () => {
+      const blob = new Blob([editor.getValue()], {type: 'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'code.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Load saved code if present
+    const saved = localStorage.getItem('client_code_' + (localStorage.getItem('client_email') || 'anon'));
+    if (saved) editor.setValue(saved, 1);
+  </script>
+</body>
+</html>
