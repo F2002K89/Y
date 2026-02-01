@@ -1,0 +1,44 @@
+<div id="kyc-area" class="mt-4">
+  <button id="startKycBtn" class="bg-black text-white px-4 py-2 rounded">Start KYC</button>
+  <span id="kycStatusText" style="margin-left:12px;color:#333;"></span>
+</div>
+
+<script>
+  async function checkKycStatus() {
+    const email = localStorage.getItem('client_email') || '';
+    if (!email) { document.getElementById('kycStatusText').textContent = 'Please sign in.'; return; }
+    try {
+      const res = await fetch('/api/kyc/status', { headers: { 'X-User-Email': email }});
+      if (!res.ok) { document.getElementById('kycStatusText').textContent = 'Status unavailable'; return; }
+      const j = await res.json();
+      document.getElementById('kycStatusText').textContent = 'KYC: ' + (j.kycStatus || 'not_started');
+    } catch (err) {
+      document.getElementById('kycStatusText').textContent = 'Status error';
+    }
+  }
+
+  document.getElementById('startKycBtn').addEventListener('click', async () => {
+    const email = localStorage.getItem('client_email') || prompt('Enter email (demo mapping):');
+    if (!email) return alert('Email required');
+    localStorage.setItem('client_email', email);
+    try {
+      const resp = await fetch('/api/kyc/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-User-Email': email },
+        body: JSON.stringify({ name: localStorage.getItem('client_name') || '' })
+      });
+      if (!resp.ok) {
+        const j = await resp.json().catch(()=>({message:resp.statusText}));
+        return alert('Failed to start KYC: ' + (j.message || resp.statusText));
+      }
+      const { verificationUrl } = await resp.json();
+      if (!verificationUrl) return alert('No verification URL returned by provider');
+      window.location.href = verificationUrl; // redirect user to DIDIT flow
+    } catch (err) {
+      alert('Error starting KYC: ' + err.message);
+    }
+  });
+
+  checkKycStatus();
+  setInterval(checkKycStatus, 15000);
+</script>
