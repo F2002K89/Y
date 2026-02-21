@@ -38,6 +38,9 @@
     /* Back-to-top */
     .to-top{opacity:0;transform:translateY(12px);pointer-events:none;transition:all .25s ease}
     .to-top.show{opacity:1;transform:none;pointer-events:auto}
+        .portal-fab{position:fixed;right:1rem;top:5rem;z-index:60;background:#000;color:#fff;padding:.75rem 1rem;border-radius:999px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.2);transition:transform .2s ease,opacity .2s ease}
+    .portal-fab:hover{transform:translateY(-2px);opacity:.92}
+    @media (max-width:640px){.portal-fab{right:.7rem;top:4.6rem;padding:.6rem .8rem;font-size:.8rem}}
   </style>
 </head>
 <body>
@@ -57,7 +60,7 @@
           <a href="#about" class="hover:opacity-80">Leadership</a>
           <a href="#leadership" class="hover:opacity-80">About Us</a>
           <a href="#contact" class="hover:opacity-80">Contact Us</a>
-          <a href="./client-portal/login.html" class="portal-fab" aria-label="Client Portal Login">Client Portal Login</a>
+           <li><a href="./client-portal/login.html" class="hover:text-white font-semibold">Client Portal</a></li>
         </div>
         <button id="menuBtn" class="md:hidden border border-black/10 rounded-full w-10 h-10 grid place-items-center" aria-label="Open menu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -444,6 +447,8 @@
   </div>
 </footer>
 
+  <a href="./client-portal/login.html" class="portal-fab" aria-label="Client Portal Login">Client Portal Login</a>
+  
   <!-- Floating back to top -->
   <button id="toTop" class="to-top fixed bottom-6 right-6 w-10 h-10 rounded-full border border-black/10 bg-white/90 shadow grid place-items-center" aria-label="Back to top">↑</button>
 
