@@ -1,243 +1,243 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Client Portal — Login / Register</title>
-  <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-50 min-h-screen flex items-center justify-center">
-  <div class="max-w-md w-full p-6 bg-white rounded-lg shadow">
-    
-    <h1 class="text-2xl font-bold mb-4 text-center">Client Portal</h1>
-<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
-  <div class="max-w-md w-full p-6 bg-white rounded-xl shadow">
-    <h1 class="text-2xl font-bold mb-2 text-center">Client Portal</h1>
-    <p class="text-sm text-gray-500 text-center mb-5">Register, complete KYC, then request listed products.</p>
-
-    <div id="messages" class="mb-4 text-sm text-red-600"></div>
-
-    <div class="flex justify-center gap-2 mb-6">
-    <div class="grid grid-cols-2 gap-2 mb-6">
-      <button id="showLogin" class="px-4 py-2 bg-black text-white rounded">Login</button>
-      <button id="showRegister" class="px-4 py-2 border rounded">Register</button>
-    </div>
-
-    <!-- Login Form -->
-    <form id="loginForm" class="space-y-4">
-      <input id="loginEmail" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
-      <input id="loginPassword" type="password" placeholder="Password" required class="w-full p-2 border rounded" />
-      <button type="submit" class="w-full bg-black text-white py-2 rounded">Sign in</button>
-    </form>
-
-    <!-- Register Form -->
-    <form id="registerForm" class="space-y-4 hidden">
-      <input id="regName" type="text" placeholder="Full name" required class="w-full p-2 border rounded" />
-      <input id="regEmail" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
-      <input id="regPassword" type="password" placeholder="Password" required class="w-full p-2 border rounded" />
-      <input id="regPassword" type="password" placeholder="Password" required minlength="6" class="w-full p-2 border rounded" />
-      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded">Create account</button>
-    </form>
-
-    <p class="mt-4 text-xs text-gray-500 text-center">
-      After login you will be taken to the dashboard. KYC is required before submitting requests.
-    </p>
-
-  </div>
-
-  <script>
-    // UI toggles
-    const showLoginBtn = document.getElementById('showLogin');
-    const showRegisterBtn = document.getElementById('showRegister');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const messages = document.getElementById('messages');
-
-    showLoginBtn.addEventListener('click', () => {
-      loginForm.classList.remove('hidden');
-      registerForm.classList.add('hidden');
-      messages.textContent = '';
-<script>
-  const showLoginBtn = document.getElementById('showLogin');
-  const showRegisterBtn = document.getElementById('showRegister');
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const messages = document.getElementById('messages');
-
-  const USERS_KEY = 'client_portal_users';
-
-  function getUsers() {
-    return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
-  }
-
-  function saveUsers(users) {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
-  }
-
-  function setSession(user) {
-    localStorage.setItem('client_token', 'local-' + Date.now());
-    localStorage.setItem('client_email', user.email);
-    localStorage.setItem('client_name', user.name || 'Client');
-    window.location.href = '/client-portal/dashboard.html';
-  }
-
-  showLoginBtn.addEventListener('click', () => {
-    loginForm.classList.remove('hidden');
-    registerForm.classList.add('hidden');
-    showLoginBtn.classList.add('bg-black', 'text-white');
-    showRegisterBtn.classList.remove('bg-black', 'text-white');
-    messages.textContent = '';
-  });
-
-  showRegisterBtn.addEventListener('click', () => {
-    registerForm.classList.remove('hidden');
-    loginForm.classList.add('hidden');
-    showRegisterBtn.classList.add('bg-black', 'text-white');
-    showLoginBtn.classList.remove('bg-black', 'text-white');
-    messages.textContent = '';
-  });
-
-  async function postJson(url, data, headers = {}) {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/json' }, headers),
-      body: JSON.stringify(data)
-    });
-
-    showRegisterBtn.addEventListener('click', () => {
-      registerForm.classList.remove('hidden');
-      loginForm.classList.add('hidden');
-      messages.textContent = '';
-    });
-
-    // POST helper
-    async function postJson(url, data, headers = {}) {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: Object.assign({ 'Content-Type': 'application/json' }, headers),
-        body: JSON.stringify(data)
-      });
-
-      const text = await res.text();
-      let json;
-
-      try {
-        json = JSON.parse(text);
-      } catch {
-        json = { raw: text, ok: res.ok };
-      }
-
-    const text = await res.text();
-    try {
-      const json = JSON.parse(text);
-      if (!res.ok) throw json;
-      return json;
-    } catch {
-      if (!res.ok) throw new Error(text || 'Request failed');
-      return { raw: text };
-    }
-
-    // Register
-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('regName').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const password = document.getElementById('regPassword').value;
-
-      messages.textContent = '';
-
-      try {
-        const j = await postJson('/api/auth/register', { name, email, password });
-        localStorage.setItem('client_token', j.token);
-        localStorage.setItem('client_email', j.user.email);
-        window.location.href = '/client-portal/dashboard.html';
-      } catch (err) {
-        messages.textContent = err.message || JSON.stringify(err);
-  }
-
-  registerForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('regName').value.trim();
-    const email = document.getElementById('regEmail').value.trim().toLowerCase();
-    const password = document.getElementById('regPassword').value;
-    messages.textContent = '';
-
-    try {
-      const j = await postJson('/api/auth/register', { name, email, password });
-      localStorage.setItem('client_token', j.token);
-      localStorage.setItem('client_email', j.user.email);
-      localStorage.setItem('client_name', j.user.name || name);
-      window.location.href = '/client-portal/dashboard.html';
-      return;
-    } catch {
-      const users = getUsers();
-      if (users.some((u) => u.email === email)) {
-        messages.textContent = 'Account already exists. Please login.';
-        return;
-      }
-    });
-
-    // Login
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value;
-
-      messages.textContent = '';
-
-      try {
-        const j = await postJson('/api/auth/login', { email, password });
-        localStorage.setItem('client_token', j.token);
-        localStorage.setItem('client_email', j.user.email);
-        window.location.href = '/client-portal/dashboard.html';
-      } catch (err) {
-        messages.textContent = err.message || JSON.stringify(err);
-      }
-    });
-
-    // Auto-redirect if already logged in
-    (function check() {
-      if (localStorage.getItem('client_token')) {
-        window.location.href = '/client-portal/dashboard.html';
-      const user = { name, email, password, kycStatus: 'not_started', kycDetails: null, requests: [] };
-      users.push(user);
-      saveUsers(users);
-      setSession(user);
-    }
-  });
-
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-    const password = document.getElementById('loginPassword').value;
-    messages.textContent = '';
-
-    try {
-      const j = await postJson('/api/auth/login', { email, password });
-      localStorage.setItem('client_token', j.token);
-      localStorage.setItem('client_email', j.user.email);
-      localStorage.setItem('client_name', j.user.name || 'Client');
-      window.location.href = '/client-portal/dashboard.html';
-      return;
-    } catch {
-      const user = getUsers().find((u) => u.email === email && u.password === password);
-      if (!user) {
-        messages.textContent = 'Invalid credentials.';
-        return;
-      }
-    })();
-  </script>
-      setSession(user);
-    }
-  });
-
-  if (localStorage.getItem('client_token')) {
-    window.location.href = '/client-portal/dashboard.html';
-  }
-</script>
-</body>
-</html>
+ <html lang="en">
+ <head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1" />
+   <title>Client Portal — Login / Register</title>
+-  <link href="https://cdn.tailwindcss.com" rel="stylesheet">
++  <script src="https://cdn.tailwindcss.com"></script>
+ </head>
+-
+-<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+-  <div class="max-w-md w-full p-6 bg-white rounded-lg shadow">
+-    
+-    <h1 class="text-2xl font-bold mb-4 text-center">Client Portal</h1>
++<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
++  <div class="max-w-md w-full p-6 bg-white rounded-xl shadow">
++    <h1 class="text-2xl font-bold mb-2 text-center">Client Portal</h1>
++    <p class="text-sm text-gray-500 text-center mb-5">Register, complete KYC, then request listed products.</p>
+ 
+     <div id="messages" class="mb-4 text-sm text-red-600"></div>
+ 
+-    <div class="flex justify-center gap-2 mb-6">
++    <div class="grid grid-cols-2 gap-2 mb-6">
+       <button id="showLogin" class="px-4 py-2 bg-black text-white rounded">Login</button>
+       <button id="showRegister" class="px-4 py-2 border rounded">Register</button>
+     </div>
+ 
+-    <!-- Login Form -->
+     <form id="loginForm" class="space-y-4">
+       <input id="loginEmail" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
+       <input id="loginPassword" type="password" placeholder="Password" required class="w-full p-2 border rounded" />
+       <button type="submit" class="w-full bg-black text-white py-2 rounded">Sign in</button>
+     </form>
+ 
+-    <!-- Register Form -->
+     <form id="registerForm" class="space-y-4 hidden">
+       <input id="regName" type="text" placeholder="Full name" required class="w-full p-2 border rounded" />
+       <input id="regEmail" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
+-      <input id="regPassword" type="password" placeholder="Password" required class="w-full p-2 border rounded" />
++      <input id="regPassword" type="password" placeholder="Password" required minlength="6" class="w-full p-2 border rounded" />
+       <button type="submit" class="w-full bg-green-600 text-white py-2 rounded">Create account</button>
+     </form>
+-
+-    <p class="mt-4 text-xs text-gray-500 text-center">
+-      After login you will be taken to the dashboard. KYC is required before submitting requests.
+-    </p>
+-
+   </div>
+ 
+-  <script>
+-    // UI toggles
+-    const showLoginBtn = document.getElementById('showLogin');
+-    const showRegisterBtn = document.getElementById('showRegister');
+-    const loginForm = document.getElementById('loginForm');
+-    const registerForm = document.getElementById('registerForm');
+-    const messages = document.getElementById('messages');
+-
+-    showLoginBtn.addEventListener('click', () => {
+-      loginForm.classList.remove('hidden');
+-      registerForm.classList.add('hidden');
+-      messages.textContent = '';
++<script>
++  const showLoginBtn = document.getElementById('showLogin');
++  const showRegisterBtn = document.getElementById('showRegister');
++  const loginForm = document.getElementById('loginForm');
++  const registerForm = document.getElementById('registerForm');
++  const messages = document.getElementById('messages');
++
++  const USERS_KEY = 'client_portal_users';
++
++  function getUsers() {
++    return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
++  }
++
++  function saveUsers(users) {
++    localStorage.setItem(USERS_KEY, JSON.stringify(users));
++  }
++
++  function setSession(user) {
++    localStorage.setItem('client_token', 'local-' + Date.now());
++    localStorage.setItem('client_email', user.email);
++    localStorage.setItem('client_name', user.name || 'Client');
++    window.location.href = './dashboard.html';
++  }
++
++  showLoginBtn.addEventListener('click', () => {
++    loginForm.classList.remove('hidden');
++    registerForm.classList.add('hidden');
++    showLoginBtn.classList.add('bg-black', 'text-white');
++    showRegisterBtn.classList.remove('bg-black', 'text-white');
++    messages.textContent = '';
++  });
++
++  showRegisterBtn.addEventListener('click', () => {
++    registerForm.classList.remove('hidden');
++    loginForm.classList.add('hidden');
++    showRegisterBtn.classList.add('bg-black', 'text-white');
++    showLoginBtn.classList.remove('bg-black', 'text-white');
++    messages.textContent = '';
++  });
++
++  async function postJson(url, data, headers = {}) {
++    const res = await fetch(url, {
++      method: 'POST',
++      headers: Object.assign({ 'Content-Type': 'application/json' }, headers),
++      body: JSON.stringify(data)
+     });
+-
+-    showRegisterBtn.addEventListener('click', () => {
+-      registerForm.classList.remove('hidden');
+-      loginForm.classList.add('hidden');
+-      messages.textContent = '';
+-    });
+-
+-    // POST helper
+-    async function postJson(url, data, headers = {}) {
+-      const res = await fetch(url, {
+-        method: 'POST',
+-        headers: Object.assign({ 'Content-Type': 'application/json' }, headers),
+-        body: JSON.stringify(data)
+-      });
+-
+-      const text = await res.text();
+-      let json;
+-
+-      try {
+-        json = JSON.parse(text);
+-      } catch {
+-        json = { raw: text, ok: res.ok };
+-      }
+-
++    const text = await res.text();
++    try {
++      const json = JSON.parse(text);
+       if (!res.ok) throw json;
+       return json;
++    } catch {
++      if (!res.ok) throw new Error(text || 'Request failed');
++      return { raw: text };
+     }
+-
+-    // Register
+-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+-      e.preventDefault();
+-
+-      const name = document.getElementById('regName').value.trim();
+-      const email = document.getElementById('regEmail').value.trim();
+-      const password = document.getElementById('regPassword').value;
+-
+-      messages.textContent = '';
+-
+-      try {
+-        const j = await postJson('/api/auth/register', { name, email, password });
+-        localStorage.setItem('client_token', j.token);
+-        localStorage.setItem('client_email', j.user.email);
+-        window.location.href = '/client-portal/dashboard.html';
+-      } catch (err) {
+-        messages.textContent = err.message || JSON.stringify(err);
++  }
++
++  registerForm.addEventListener('submit', async (e) => {
++    e.preventDefault();
++    const name = document.getElementById('regName').value.trim();
++    const email = document.getElementById('regEmail').value.trim().toLowerCase();
++    const password = document.getElementById('regPassword').value;
++    messages.textContent = '';
++
++    try {
++      const j = await postJson('/api/auth/register', { name, email, password });
++      localStorage.setItem('client_token', j.token);
++      localStorage.setItem('client_email', j.user.email);
++      localStorage.setItem('client_name', j.user.name || name);
++      window.location.href = './dashboard.html';
++      return;
++    } catch {
++      const users = getUsers();
++      if (users.some((u) => u.email === email)) {
++        messages.textContent = 'Account already exists. Please login.';
++        return;
+       }
+-    });
+-
+-    // Login
+-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+-      e.preventDefault();
+-
+-      const email = document.getElementById('loginEmail').value.trim();
+-      const password = document.getElementById('loginPassword').value;
+-
+-      messages.textContent = '';
+-
+-      try {
+-        const j = await postJson('/api/auth/login', { email, password });
+-        localStorage.setItem('client_token', j.token);
+-        localStorage.setItem('client_email', j.user.email);
+-        window.location.href = '/client-portal/dashboard.html';
+-      } catch (err) {
+-        messages.textContent = err.message || JSON.stringify(err);
+-      }
+-    });
+-
+-    // Auto-redirect if already logged in
+-    (function check() {
+-      if (localStorage.getItem('client_token')) {
+-        window.location.href = '/client-portal/dashboard.html';
++      const user = { name, email, password, kycStatus: 'not_started', kycDetails: null, requests: [] };
++      users.push(user);
++      saveUsers(users);
++      setSession(user);
++    }
++  });
++
++  loginForm.addEventListener('submit', async (e) => {
++    e.preventDefault();
++    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
++    const password = document.getElementById('loginPassword').value;
++    messages.textContent = '';
++
++    try {
++      const j = await postJson('/api/auth/login', { email, password });
++      localStorage.setItem('client_token', j.token);
++      localStorage.setItem('client_email', j.user.email);
++      localStorage.setItem('client_name', j.user.name || 'Client');
++      window.location.href = './dashboard.html';
++      return;
++    } catch {
++      const user = getUsers().find((u) => u.email === email && u.password === password);
++      if (!user) {
++        messages.textContent = 'Invalid credentials.';
++        return;
+       }
+-    })();
+-  </script>
++      setSession(user);
++    }
++  });
+ 
++  if (localStorage.getItem('client_token')) {
++    window.location.href = './dashboard.html';
++  }
++</script>
+ </body>
+ </html>
