@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>KYC Verification — NEFT Client Portal</title>
+  <link rel="icon" href="../logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family:'Montserrat',sans-serif}
+    .glass{backdrop-filter:saturate(180%) blur(10px);background:rgba(255,255,255,.88)}
+    .fade-in{animation:fadeIn 0.4s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .pulse-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 1.5s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+    #didit-frame{border:none;width:100%;height:700px;display:block}
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div class="text-center">
+      <img src="../logo.png" class="h-12 w-12 object-contain mx-auto mb-3 animate-pulse" alt="" onerror="this.style.display='none'"/>
+      <p class="text-sm font-semibold text-gray-500">Loading…</p>
+    </div>
+  </div>
+
+  <nav class="fixed inset-x-0 top-0 z-40 glass border-b border-black/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-2">
+          <img src="../logo.png" class="h-9 w-9 object-contain" alt="" onerror="this.style.display='none'"/>
+          <span class="font-extrabold text-lg">NEFT OIL TRADING</span>
+        </a>
+        <div class="flex items-center gap-4">
+          <a href="dashboard.html" class="text-sm font-medium hover:opacity-70 transition flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Dashboard
+          </a>
+          <button onclick="doLogout()" class="text-sm border border-black/10 rounded-full px-4 py-1.5 hover:bg-black hover:text-white transition font-medium">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-16 px-4 max-w-2xl mx-auto fade-in" id="main-content" style="display:none">
+
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-1">
+        <h1 class="text-2xl font-extrabold">KYC Verification</h1>
+        <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full border border-green-200">Live</span>
+      </div>
+      <p class="text-gray-500 text-sm leading-relaxed">Verify your identity to activate your NEFT trading account. Powered by <strong>Didit</strong> — automated, secure, and UAE AML compliant.</p>
+    </div>
+
+    <!-- What Didit checks -->
+    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-5 mb-6">
+      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">What Didit checks</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/></svg>
+          </div>
+          <div><p class="text-sm font-semibold">ID Document</p><p class="text-xs text-gray-400">Passport or Emirates ID</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 9a9 9 0 10-18 0"/></svg>
+          </div>
+          <div><p class="text-sm font-semibold">Liveness Check</p><p class="text-xs text-gray-400">Anti-spoofing selfie</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div><p class="text-sm font-semibold">Face Match</p><p class="text-xs text-gray-400">ID photo vs selfie</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div><p class="text-sm font-semibold">AML Screening</p><p class="text-xs text-gray-400">Sanctions &amp; PEP lists</p></div>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        End-to-end encrypted · 220+ countries · Under 2 minutes
+      </div>
+    </div>
+
+    <!-- ── STATE: START ── -->
+    <div id="state-start">
+      <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-8 text-center">
+        <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h2 class="font-bold text-lg mb-2">Ready to Verify Your Identity</h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6 max-w-sm mx-auto">Takes <strong>under 2 minutes</strong>. Have your passport or Emirates ID and a camera ready. Make sure you're in a well-lit area.</p>
+        <button onclick="startVerification()"
+          class="w-full bg-black text-white py-4 rounded-xl font-bold text-sm hover:bg-gray-800 transition tracking-wide uppercase">
+          Start KYC Verification with Didit
+        </button>
+        <p class="text-xs text-gray-400 mt-3">Secured by <a href="https://didit.me" target="_blank" class="underline">Didit</a></p>
+      </div>
+    </div>
+
+    <!-- ── STATE: IFRAME ── -->
+    <div id="state-iframe" class="hidden">
+      <div class="bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-gray-50">
+          <div class="flex items-center gap-2.5">
+            <div class="pulse-dot"></div>
+            <span class="text-xs font-semibold text-gray-700">Verification in progress — do not close this page</span>
+          </div>
+          <span class="text-xs text-gray-400 hidden sm:block">Secured by Didit</span>
+        </div>
+        <iframe id="didit-frame"
+          src="https://verify.didit.me/u/fa0d3982-d35a-4b30-af69-3f87a4bd7e4e"
+          allow="camera; microphone; fullscreen; autoplay; encrypted-media"
+          allowfullscreen
+          title="Didit Identity Verification">
+        </iframe>
+      </div>
+      <p class="text-xs text-center text-gray-400 mt-3">Your data is encrypted and handled by Didit in compliance with GDPR &amp; UAE data laws.</p>
+
+      <!-- Manual confirm button — client clicks this after finishing Didit -->
+      <div class="mt-4 bg-blue-50 border border-blue-100 rounded-xl p-4">
+        <p class="text-xs font-semibold text-blue-800 mb-1">Completed the verification steps above?</p>
+        <p class="text-xs text-blue-600 mb-3">Once you have finished all steps inside the Didit panel, click the button below to confirm and update your account status.</p>
+        <button onclick="confirmKYCDone()"
+          class="w-full bg-black text-white py-3 rounded-lg font-bold text-sm hover:bg-gray-800 transition">
+          I Have Completed KYC Verification ✓
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STATE: SUCCESS ── -->
+    <div id="state-success" class="hidden">
+      <div class="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
+        <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 class="font-bold text-green-800 text-xl mb-2">KYC Verification Submitted!</h2>
+        <p class="text-green-700 text-sm leading-relaxed mb-2">Your identity has been submitted to NEFT's compliance team via Didit.</p>
+        <p class="text-green-700 text-sm leading-relaxed mb-6">You will receive an email once your account is reviewed and approved — typically within <strong>2–3 business days</strong>.</p>
+        <a href="dashboard.html" class="inline-block bg-black text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-800 transition">Back to Dashboard</a>
+      </div>
+    </div>
+
+    <!-- Already done state -->
+    <div id="state-done" class="hidden">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+        <div class="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 class="font-bold text-gray-800 text-xl mb-2">KYC Already Submitted</h2>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">Your KYC verification has already been submitted. Our team is reviewing it and will notify you by email.</p>
+        <a href="dashboard.html" class="inline-block bg-black text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-800 transition">Back to Dashboard</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const auth = firebase.auth();
+    const db   = firebase.firestore();
+    let currentUser = null;
+
+    auth.onAuthStateChanged(async user => {
+      if (!user) { window.location.href = 'login.html'; return; }
+      currentUser = user;
+      document.getElementById('loading-screen').style.display = 'none';
+      document.getElementById('main-content').style.display   = 'block';
+
+      // Check if already submitted
+      try {
+        const doc = await db.collection('clients').doc(user.uid).get();
+        if (doc.exists) {
+          const status = doc.data().kyc_status;
+          if (status === 'Submitted' || status === 'Approved') {
+            showState('state-done');
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // Check URL param — Didit redirects back with ?verified=1
+      if (new URLSearchParams(window.location.search).get('verified') === '1') {
+        await saveKYCStatus();
+        showState('state-success');
+        return;
+      }
+
+      showState('state-start');
+    });
+
+    function showState(id) {
+      ['state-start','state-iframe','state-success','state-done']
+        .forEach(s => document.getElementById(s).classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function startVerification() {
+      showState('state-iframe');
+      // Listen for Didit postMessage completion
+      window.addEventListener('message', async function handler(event) {
+        if (!event.origin.includes('didit.me')) return;
+        const d = event.data;
+        const done = d && (
+          d.status === 'Approved' ||
+          d.status === 'In Review' ||
+          d.status === 'Declined' ||
+          d.type   === 'VERIFICATION_COMPLETE' ||
+          d.type   === 'VERIFICATION_SUBMITTED'
+        );
+        if (done) {
+          window.removeEventListener('message', handler);
+          await saveKYCStatus();
+          showState('state-success');
+        }
+      });
+    }
+
+    // Called when client clicks "I Have Completed KYC" button
+    async function confirmKYCDone() {
+      await saveKYCStatus();
+      showState('state-success');
+    }
+
+    async function saveKYCStatus() {
+      if (!currentUser) return;
+      try {
+        // Save KYC status to Firestore
+        await db.collection('clients').doc(currentUser.uid).set({
+          uid:        currentUser.uid,
+          email:      currentUser.email,
+          kyc_status: 'Submitted',
+          kyc_submitted_at: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });  // merge:true so it doesn't overwrite other fields
+
+        // Also send email notification to NEFT
+        fetch('https://formsubmit.co/ajax/info@neftoiltrading.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject:  'KYC Submitted — ' + currentUser.email + ' | NEFT Portal',
+            _template: 'table',
+            _captcha:  'false',
+            Client_Email: currentUser.email,
+            Client_Name:  currentUser.displayName ? currentUser.displayName.split('||')[0] : currentUser.email,
+            Status:       'KYC Submitted',
+            Submitted_At: new Date().toLocaleString('en-GB', { timeZone: 'Asia/Dubai' })
+          })
+        }).catch(()=>{});
+
+      } catch(err) {
+        console.error('KYC save error:', err.code, err.message);
+      }
+    }
+
+    function doLogout() { auth.signOut().then(() => window.location.href = 'login.html'); }
+  </script>
+</body>
+</html>
