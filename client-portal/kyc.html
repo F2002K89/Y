@@ -11,11 +11,14 @@
   <style>
     body { font-family: 'Montserrat', sans-serif; }
     .glass { backdrop-filter: saturate(180%) blur(10px); background: rgba(255,255,255,.88); }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: #000; box-shadow: 0 0 0 2px rgba(0,0,0,0.07); }
-    .upload-box { border: 2px dashed #e5e7eb; transition: all .2s; }
-    .upload-box:hover { border-color: #000; background: #f9f9f9; }
     .fade-in { animation: fadeIn 0.4s ease; }
     @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2.5px solid #000; border-top-color: transparent; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .step-dot { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; margin-top: 5px; }
+    .step-dot.done { background: #000; }
+    .step-dot.active { background: #000; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
+    #didit-frame { border: none; width: 100%; height: 680px; border-radius: 16px; display: block; }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -41,159 +44,248 @@
 
   <main class="pt-24 pb-16 px-4 max-w-2xl mx-auto fade-in">
 
-    <div class="mb-8">
+    <!-- Title -->
+    <div class="mb-6">
       <h1 class="text-2xl font-extrabold">KYC Verification</h1>
-      <p class="text-gray-500 text-sm mt-1 leading-relaxed">Complete your Know Your Customer verification to activate full trading access. All documents are handled securely and in strict compliance with UAE AML regulations.</p>
+      <p class="text-gray-500 text-sm mt-1 leading-relaxed">Verify your identity to activate your trading account. Powered by <strong>Didit</strong> — secure, automated, and compliant with UAE AML regulations.</p>
     </div>
 
-    <!-- SECTION 1: Personal -->
-    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-black border-b pb-3 mb-5">Personal Information</h2>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">First Name</label>
-          <input type="text" id="k-fname" placeholder="Ahmed" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition"/>
+    <!-- What Didit checks -->
+    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-5 mb-6">
+      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">What you'll need</p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="flex items-start gap-3">
+          <div class="step-dot done mt-1.5"></div>
+          <div>
+            <p class="text-sm font-semibold">Government ID</p>
+            <p class="text-xs text-gray-400">Passport or Emirates ID</p>
+          </div>
         </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Last Name</label>
-          <input type="text" id="k-lname" placeholder="Al Mansouri" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition"/>
+        <div class="flex items-start gap-3">
+          <div class="step-dot done mt-1.5"></div>
+          <div>
+            <p class="text-sm font-semibold">Liveness Check</p>
+            <p class="text-xs text-gray-400">Short selfie video</p>
+          </div>
         </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Nationality</label>
-          <select id="k-nation" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition bg-white">
-            <option>United Arab Emirates</option><option>Saudi Arabia</option><option>Qatar</option>
-            <option>Kuwait</option><option>Bahrain</option><option>Oman</option>
-            <option>India</option><option>Pakistan</option><option>United Kingdom</option>
-            <option>United States</option><option>Other</option>
-          </select>
+        <div class="flex items-start gap-3">
+          <div class="step-dot done mt-1.5"></div>
+          <div>
+            <p class="text-sm font-semibold">Face Match</p>
+            <p class="text-xs text-gray-400">Matches ID to your face</p>
+          </div>
         </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Date of Birth</label>
-          <input type="date" id="k-dob" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition"/>
-        </div>
-      </div>
-      <div>
-        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Passport / National ID Number</label>
-        <input type="text" id="k-passport" placeholder="A12345678" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition"/>
-      </div>
-    </div>
-
-    <!-- SECTION 2: Company -->
-    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-black border-b pb-3 mb-5">Company Details</h2>
-      <div class="mb-4">
-        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Company / Entity Name</label>
-        <input type="text" id="k-company" placeholder="Al Mansouri Energy LLC" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition"/>
-      </div>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Business Type</label>
-          <select id="k-btype" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition bg-white">
-            <option>Oil &amp; Gas Company</option><option>Refinery</option>
-            <option>Distributor / Trader</option><option>Government Entity</option>
-            <option>Investment Fund</option><option>Other</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Country of Registration</label>
-          <select id="k-country" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition bg-white">
-            <option>UAE</option><option>Saudi Arabia</option><option>Qatar</option>
-            <option>Kuwait</option><option>Oman</option><option>India</option>
-            <option>USA</option><option>UK</option><option>Other</option>
-          </select>
+        <div class="flex items-start gap-3">
+          <div class="step-dot done mt-1.5"></div>
+          <div>
+            <p class="text-sm font-semibold">AML Screening</p>
+            <p class="text-xs text-gray-400">Sanctions & PEP check</p>
+          </div>
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Trade License No.</label>
-          <input type="text" id="k-license" placeholder="TL-2024-000123" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition"/>
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Annual Trade Volume (USD)</label>
-          <select id="k-volume" class="border border-gray-200 rounded-lg px-4 py-3 w-full text-sm transition bg-white">
-            <option>Below $1M</option><option>$1M – $10M</option><option>$10M – $50M</option>
-            <option>$50M – $100M</option><option>Above $100M</option>
-          </select>
-        </div>
+      <div class="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        GDPR compliant · 220+ countries · Encrypted · Results in under 2 minutes
       </div>
     </div>
 
-    <!-- SECTION 3: Documents -->
-    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-black border-b pb-3 mb-5">Document Upload</h2>
-      <p class="text-xs text-gray-500 mb-4">Upload clear scanned copies or photos of the following documents (PDF, JPG, PNG — max 5MB each):</p>
-      <div class="grid grid-cols-2 gap-4">
-        <label class="upload-box rounded-xl p-5 text-center cursor-pointer block">
-          <input type="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="fileChosen(this,'ub1')"/>
-          <div class="text-2xl mb-2">🪪</div>
-          <p class="text-xs font-semibold text-gray-600" id="ub1">Passport / Emirates ID</p>
-        </label>
-        <label class="upload-box rounded-xl p-5 text-center cursor-pointer block">
-          <input type="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="fileChosen(this,'ub2')"/>
-          <div class="text-2xl mb-2">📄</div>
-          <p class="text-xs font-semibold text-gray-600" id="ub2">Trade License</p>
-        </label>
-        <label class="upload-box rounded-xl p-5 text-center cursor-pointer block">
-          <input type="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="fileChosen(this,'ub3')"/>
-          <div class="text-2xl mb-2">🏢</div>
-          <p class="text-xs font-semibold text-gray-600" id="ub3">Certificate of Incorporation</p>
-        </label>
-        <label class="upload-box rounded-xl p-5 text-center cursor-pointer block">
-          <input type="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="fileChosen(this,'ub4')"/>
-          <div class="text-2xl mb-2">🏦</div>
-          <p class="text-xs font-semibold text-gray-600" id="ub4">Bank Reference Letter</p>
-        </label>
+    <!-- ══════════════════════════════════════════
+         STATE 1: START BUTTON (default view)
+    ══════════════════════════════════════════ -->
+    <div id="state-start">
+      <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-8 text-center">
+        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
+        </div>
+        <h2 class="font-bold text-lg mb-2">Ready to Verify Your Identity</h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6 max-w-sm mx-auto">The process takes under 2 minutes. Make sure you have your ID and a working camera ready.</p>
+        <button id="start-btn" onclick="startVerification()"
+          class="w-full bg-black text-white py-4 rounded-xl font-bold text-sm hover:bg-gray-800 transition tracking-wide uppercase">
+          Start KYC Verification
+        </button>
+        <p class="text-xs text-gray-400 mt-3">Powered by <a href="https://didit.me" target="_blank" class="underline">Didit</a> — trusted identity verification</p>
+      </div>
+
+      <!-- Config warning (shown only if not set up yet) -->
+      <div id="config-warning" class="hidden mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4">
+        <p class="text-xs font-bold text-amber-800 mb-1">⚙️ Setup Required</p>
+        <p class="text-xs text-amber-700 leading-relaxed">
+          The Didit API key and Workflow ID have not been configured yet.
+          Please follow the <strong>DIDIT-SETUP-GUIDE.txt</strong> to get your credentials from
+          <a href="https://business.didit.me" target="_blank" class="underline">business.didit.me</a>
+          and paste them into this file.
+        </p>
       </div>
     </div>
 
-    <!-- SECTION 4: Declaration -->
-    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-6">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-black border-b pb-3 mb-5">Declaration</h2>
-      <label class="flex gap-3 items-start cursor-pointer">
-        <input type="checkbox" id="k-declare" class="mt-1 w-4 h-4 accent-black flex-shrink-0"/>
-        <span class="text-sm text-gray-600 leading-relaxed">
-          I declare that all information and documents provided are accurate and complete. I consent to NEFT Oil Trading verifying my details in accordance with applicable KYC, AML, and UAE regulatory requirements.
-        </span>
-      </label>
+    <!-- ══════════════════════════════════════════
+         STATE 2: LOADING
+    ══════════════════════════════════════════ -->
+    <div id="state-loading" class="hidden">
+      <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-10 text-center">
+        <div class="spinner mx-auto mb-4"></div>
+        <p class="text-sm font-semibold">Creating your verification session…</p>
+        <p class="text-xs text-gray-400 mt-1">This takes just a second</p>
+      </div>
     </div>
 
-    <button onclick="submitKYC()"
-      class="w-full bg-black text-white py-4 rounded-xl font-bold text-sm hover:bg-gray-800 transition tracking-wide uppercase">
-      Submit KYC Application
-    </button>
+    <!-- ══════════════════════════════════════════
+         STATE 3: DIDIT IFRAME (verification)
+    ══════════════════════════════════════════ -->
+    <div id="state-iframe" class="hidden">
+      <div class="bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden">
+        <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span class="text-xs font-semibold text-gray-600">Verification in progress</span>
+          </div>
+          <span class="text-xs text-gray-400">Powered by Didit</span>
+        </div>
+        <iframe
+          id="didit-frame"
+          src=""
+          allow="camera; microphone; fullscreen; autoplay; encrypted-media"
+          title="Didit Identity Verification">
+        </iframe>
+      </div>
+      <p class="text-xs text-center text-gray-400 mt-3">Please complete all steps. Do not close this page.</p>
+    </div>
 
-    <!-- Success message (hidden) -->
-    <div id="kyc-success" class="hidden mt-6 bg-green-50 border border-green-200 rounded-2xl p-6 text-center">
-      <div class="text-3xl mb-3">✅</div>
-      <h3 class="font-bold text-green-800 text-lg mb-1">KYC Application Submitted</h3>
-      <p class="text-green-700 text-sm leading-relaxed">Our compliance team will review your application within 2–3 business days. You will be notified by email once verified.</p>
-      <a href="dashboard.html" class="inline-block mt-4 bg-black text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition">Back to Dashboard</a>
+    <!-- ══════════════════════════════════════════
+         STATE 4: SUCCESS
+    ══════════════════════════════════════════ -->
+    <div id="state-success" class="hidden">
+      <div class="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
+        <div class="text-5xl mb-4">✅</div>
+        <h2 class="font-bold text-green-800 text-xl mb-2">Verification Submitted!</h2>
+        <p class="text-green-700 text-sm leading-relaxed mb-2">Your identity verification has been submitted to NEFT's compliance team via Didit.</p>
+        <p class="text-green-700 text-sm leading-relaxed mb-6">Results are typically available within <strong>1–3 business days</strong>. You'll receive an email notification when your account is approved.</p>
+        <a href="dashboard.html" class="inline-block bg-black text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-800 transition">Back to Dashboard</a>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         STATE 5: ERROR
+    ══════════════════════════════════════════ -->
+    <div id="state-error" class="hidden">
+      <div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+        <div class="text-4xl mb-3">⚠️</div>
+        <h2 class="font-bold text-red-800 text-lg mb-2">Verification Could Not Start</h2>
+        <p id="error-detail" class="text-red-700 text-sm leading-relaxed mb-4"></p>
+        <button onclick="resetState()" class="bg-black text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition">Try Again</button>
+      </div>
     </div>
 
   </main>
 
   <script>
+    // ════════════════════════════════════════════════════════════
+    //  DIDIT CONFIGURATION
+    //  !! Fill these in after following DIDIT-SETUP-GUIDE.txt !!
+    //
+    //  Get your keys at: https://business.didit.me
+    //  → Settings → API Keys → copy API Key
+    //  → Workflows → create KYC workflow → copy Workflow ID
+    // ════════════════════════════════════════════════════════════
+    const DIDIT_API_KEY     = '_pJeO5VOTlx4qv7TJm_N20H1B6SiRCDl2ZtSOzC17LE';
+    const DIDIT_WORKFLOW_ID = '22286867-06cc-4e4a-8a83-34412eb01889';
+    // ════════════════════════════════════════════════════════════
+
+    const DIDIT_SESSION_URL = 'https://verification.didit.me/v3/session/';
+
     const user = JSON.parse(sessionStorage.getItem('neft_user') || 'null');
     if (!user) window.location.href = 'login.html';
 
-    function fileChosen(input, labelId) {
-      const label = document.getElementById(labelId);
-      if (input.files && input.files[0]) {
-        label.textContent = '✓ ' + input.files[0].name;
-        label.style.color = '#166534';
+    // Show config warning if not set up
+    if (DIDIT_API_KEY === '_pJeO5VOTlx4qv7TJm_N20H1B6SiRCDl2ZtSOzC17LE') {
+      document.getElementById('config-warning').classList.remove('hidden');
+    }
+
+    function showState(id) {
+      ['state-start','state-loading','state-iframe','state-success','state-error']
+        .forEach(s => document.getElementById(s).classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function resetState() { showState('state-start'); }
+
+    async function startVerification() {
+      if (DIDIT_API_KEY === '_pJeO5VOTlx4qv7TJm_N20H1B6SiRCDl2ZtSOzC17LE') {
+        alert('Didit is not configured yet. Please follow the DIDIT-SETUP-GUIDE.txt and add your API key and Workflow ID to kyc.html.');
+        return;
+      }
+
+      showState('state-loading');
+
+      try {
+        // Build callback URL — returns user to this page with ?verified=1
+        const callbackUrl = window.location.origin + window.location.pathname + '?verified=1';
+
+        // ── Create Didit verification session ──────────────────
+        const res = await fetch(DIDIT_SESSION_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type':  'application/json',
+            'x-api-key':     DIDIT_API_KEY
+          },
+          body: JSON.stringify({
+            workflow_id:  DIDIT_WORKFLOW_ID,
+            callback:     callbackUrl,
+            vendor_data:  user.email || user.name || 'neft-client',
+            contact_details: {
+              email:                    user.email || '',
+              email_lang:               'en',
+              send_notification_emails: true
+            },
+            metadata: {
+              company:  user.company || '',
+              portal:   'NEFT Oil Trading Client Portal'
+            }
+          })
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(`Didit API error ${res.status}: ${errText}`);
+        }
+
+        const session = await res.json();
+
+        if (!session.verification_url) {
+          throw new Error('No verification URL returned from Didit. Check your API key and Workflow ID.');
+        }
+
+        // ── Load Didit iframe ───────────────────────────────────
+        document.getElementById('didit-frame').src = session.verification_url;
+        showState('state-iframe');
+
+        // Store session ID for reference
+        sessionStorage.setItem('neft_didit_session', session.session_id || '');
+
+        // Listen for postMessage from Didit iframe
+        window.addEventListener('message', function(event) {
+          if (!event.origin.includes('didit.me')) return;
+          const data = event.data;
+          if (data && (data.status === 'Approved' || data.status === 'In Review' || data.type === 'VERIFICATION_COMPLETE')) {
+            onVerificationComplete();
+          }
+        });
+
+      } catch (err) {
+        console.error('Didit error:', err);
+        document.getElementById('error-detail').textContent = err.message || 'Could not connect to the verification service. Please check your internet connection and try again.';
+        showState('state-error');
       }
     }
 
-    function submitKYC() {
-      if (!document.getElementById('k-declare').checked) {
-        alert('Please accept the declaration to proceed.');
-        return;
-      }
+    function onVerificationComplete() {
       sessionStorage.setItem('neft_kyc', '1');
-      document.getElementById('kyc-success').classList.remove('hidden');
-      document.getElementById('kyc-success').scrollIntoView({ behavior: 'smooth' });
+      showState('state-success');
+    }
+
+    // Handle callback redirect (?verified=1)
+    if (new URLSearchParams(window.location.search).get('verified') === '1') {
+      onVerificationComplete();
     }
 
     function doLogout() {
