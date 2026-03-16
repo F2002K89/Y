@@ -1,9 +1,3 @@
-// ════════════════════════════════════════════════════════
-//  NEFT OIL TRADING — Firebase Configuration
-//  !! REPLACE THESE VALUES with your own Firebase project !!
-//  Follow FIREBASE-SETUP-GUIDE.txt to get these values
-// ════════════════════════════════════════════════════════
-
 const firebaseConfig = {
   apiKey: "AIzaSyDKTnzS5gK1AIX2aar4hmpUYWSnxOgRJVU",
   authDomain: "neft-oil-trading-portal-4ba05.firebaseapp.com",
