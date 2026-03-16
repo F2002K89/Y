@@ -13,12 +13,24 @@
     .glass { backdrop-filter: saturate(180%) blur(10px); background: rgba(255,255,255,.88); }
     .fade-in { animation: fadeIn 0.4s ease; }
     @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
-    .spinner { display: inline-block; width: 16px; height: 16px; border: 2.5px solid #000; border-top-color: transparent; border-radius: 50%; animation: spin .7s linear infinite; }
+    .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2.5px solid #000; border-top-color: transparent;
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .step-dot { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; margin-top: 5px; }
-    .step-dot.done { background: #000; }
-    .step-dot.active { background: #000; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
-    #didit-frame { border: none; width: 100%; height: 680px; border-radius: 16px; display: block; }
+    #didit-frame {
+      border: none; width: 100%; height: 700px;
+      border-radius: 0 0 16px 16px; display: block;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(1.3); }
+    }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -33,10 +45,15 @@
         </a>
         <div class="flex items-center gap-4">
           <a href="dashboard.html" class="text-sm font-medium hover:opacity-70 transition flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
             Dashboard
           </a>
-          <button onclick="doLogout()" class="text-sm border border-black/10 rounded-full px-4 py-1.5 hover:bg-black hover:text-white transition font-medium">Sign Out</button>
+          <button onclick="doLogout()"
+            class="text-sm border border-black/10 rounded-full px-4 py-1.5 hover:bg-black hover:text-white transition font-medium">
+            Sign Out
+          </button>
         </div>
       </div>
     </div>
@@ -46,160 +63,181 @@
 
     <!-- Title -->
     <div class="mb-6">
-      <h1 class="text-2xl font-extrabold">KYC Verification</h1>
-      <p class="text-gray-500 text-sm mt-1 leading-relaxed">Verify your identity to activate your trading account. Powered by <strong>Didit</strong> — secure, automated, and compliant with UAE AML regulations.</p>
+      <div class="flex items-center gap-2 mb-1">
+        <h1 class="text-2xl font-extrabold">KYC Verification</h1>
+        <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full border border-green-200">Live</span>
+      </div>
+      <p class="text-gray-500 text-sm leading-relaxed">
+        Verify your identity to activate your NEFT trading account. Powered by
+        <strong>Didit</strong> — automated, secure, and UAE AML compliant.
+      </p>
     </div>
 
-    <!-- What Didit checks -->
+    <!-- What gets checked -->
     <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-5 mb-6">
-      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">What you'll need</p>
+      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">What Didit checks</p>
       <div class="grid grid-cols-2 gap-3">
-        <div class="flex items-start gap-3">
-          <div class="step-dot done mt-1.5"></div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm flex-shrink-0">🪪</div>
           <div>
-            <p class="text-sm font-semibold">Government ID</p>
+            <p class="text-sm font-semibold">ID Document</p>
             <p class="text-xs text-gray-400">Passport or Emirates ID</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <div class="step-dot done mt-1.5"></div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm flex-shrink-0">🤳</div>
           <div>
             <p class="text-sm font-semibold">Liveness Check</p>
-            <p class="text-xs text-gray-400">Short selfie video</p>
+            <p class="text-xs text-gray-400">Anti-spoofing selfie</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <div class="step-dot done mt-1.5"></div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm flex-shrink-0">👤</div>
           <div>
             <p class="text-sm font-semibold">Face Match</p>
-            <p class="text-xs text-gray-400">Matches ID to your face</p>
+            <p class="text-xs text-gray-400">ID photo vs selfie</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <div class="step-dot done mt-1.5"></div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm flex-shrink-0">🔍</div>
           <div>
             <p class="text-sm font-semibold">AML Screening</p>
-            <p class="text-xs text-gray-400">Sanctions & PEP check</p>
+            <p class="text-xs text-gray-400">Sanctions &amp; PEP lists</p>
           </div>
         </div>
       </div>
       <div class="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        GDPR compliant · 220+ countries · Encrypted · Results in under 2 minutes
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+        End-to-end encrypted · 220+ countries · Under 2 minutes
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         STATE 1: START BUTTON (default view)
-    ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════
+         STATE: START
+    ══════════════════════════════ -->
     <div id="state-start">
       <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-8 text-center">
-        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
+        <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
         </div>
         <h2 class="font-bold text-lg mb-2">Ready to Verify Your Identity</h2>
-        <p class="text-sm text-gray-500 leading-relaxed mb-6 max-w-sm mx-auto">The process takes under 2 minutes. Make sure you have your ID and a working camera ready.</p>
+        <p class="text-sm text-gray-500 leading-relaxed mb-2 max-w-sm mx-auto">
+          The process takes <strong>under 2 minutes</strong>. Have your passport or IDENTITY CARD and a working camera ready.
+        </p>
+        <p class="text-xs text-gray-400 mb-6">Make sure you're in a well-lit area.</p>
+
         <button id="start-btn" onclick="startVerification()"
           class="w-full bg-black text-white py-4 rounded-xl font-bold text-sm hover:bg-gray-800 transition tracking-wide uppercase">
-          Start KYC Verification
+          Start KYC Verification with Didit
         </button>
-        <p class="text-xs text-gray-400 mt-3">Powered by <a href="https://didit.me" target="_blank" class="underline">Didit</a> — trusted identity verification</p>
-      </div>
 
-      <!-- Config warning (shown only if not set up yet) -->
-      <div id="config-warning" class="hidden mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4">
-        <p class="text-xs font-bold text-amber-800 mb-1">⚙️ Setup Required</p>
-        <p class="text-xs text-amber-700 leading-relaxed">
-          The Didit API key and Workflow ID have not been configured yet.
-          Please follow the <strong>DIDIT-SETUP-GUIDE.txt</strong> to get your credentials from
-          <a href="https://business.didit.me" target="_blank" class="underline">business.didit.me</a>
-          and paste them into this file.
-        </p>
+        <div class="flex items-center justify-center gap-2 mt-4">
+          <img src="https://didit.me/favicon.ico" class="w-4 h-4 rounded" onerror="this.style.display='none'" alt=""/>
+          <p class="text-xs text-gray-400">Secured &amp; powered by <a href="https://didit.me" target="_blank" class="underline font-medium">Didit</a></p>
+        </div>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         STATE 2: LOADING
-    ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════
+         STATE: LOADING
+    ══════════════════════════════ -->
     <div id="state-loading" class="hidden">
       <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-10 text-center">
         <div class="spinner mx-auto mb-4"></div>
-        <p class="text-sm font-semibold">Creating your verification session…</p>
-        <p class="text-xs text-gray-400 mt-1">This takes just a second</p>
+        <p class="text-sm font-semibold">Creating your secure verification session…</p>
+        <p class="text-xs text-gray-400 mt-1">Connecting to Didit</p>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         STATE 3: DIDIT IFRAME (verification)
-    ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════
+         STATE: IFRAME (active verification)
+    ══════════════════════════════ -->
     <div id="state-iframe" class="hidden">
       <div class="bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden">
-        <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-            <span class="text-xs font-semibold text-gray-600">Verification in progress</span>
+        <!-- iframe header bar -->
+        <div class="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-gray-50">
+          <div class="flex items-center gap-2.5">
+            <div class="pulse-dot"></div>
+            <span class="text-xs font-semibold text-gray-700">Verification in progress — do not close this page</span>
           </div>
-          <span class="text-xs text-gray-400">Powered by Didit</span>
+          <span class="text-xs text-gray-400 hidden sm:block">Secured by Didit</span>
         </div>
+        <!-- Didit iframe -->
         <iframe
           id="didit-frame"
           src=""
           allow="camera; microphone; fullscreen; autoplay; encrypted-media"
+          allowfullscreen
           title="Didit Identity Verification">
         </iframe>
       </div>
-      <p class="text-xs text-center text-gray-400 mt-3">Please complete all steps. Do not close this page.</p>
+      <div class="mt-3 flex items-center justify-center gap-2 text-xs text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+        Your data is encrypted and handled by Didit in compliance with GDPR &amp; UAE data laws.
+      </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         STATE 4: SUCCESS
-    ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════
+         STATE: SUCCESS
+    ══════════════════════════════ -->
     <div id="state-success" class="hidden">
       <div class="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
         <div class="text-5xl mb-4">✅</div>
         <h2 class="font-bold text-green-800 text-xl mb-2">Verification Submitted!</h2>
-        <p class="text-green-700 text-sm leading-relaxed mb-2">Your identity verification has been submitted to NEFT's compliance team via Didit.</p>
-        <p class="text-green-700 text-sm leading-relaxed mb-6">Results are typically available within <strong>1–3 business days</strong>. You'll receive an email notification when your account is approved.</p>
-        <a href="dashboard.html" class="inline-block bg-black text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-800 transition">Back to Dashboard</a>
+        <p class="text-green-700 text-sm leading-relaxed mb-2">
+          Your identity has been submitted to NEFT's compliance team via Didit.
+        </p>
+        <p class="text-green-700 text-sm leading-relaxed mb-6">
+          You'll receive an email once your account is reviewed and approved — typically within <strong>2–3 business days</strong>.
+        </p>
+        <a href="dashboard.html"
+          class="inline-block bg-black text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-800 transition">
+          Back to Dashboard
+        </a>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         STATE 5: ERROR
-    ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════
+         STATE: ERROR
+    ══════════════════════════════ -->
     <div id="state-error" class="hidden">
       <div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
         <div class="text-4xl mb-3">⚠️</div>
-        <h2 class="font-bold text-red-800 text-lg mb-2">Verification Could Not Start</h2>
-        <p id="error-detail" class="text-red-700 text-sm leading-relaxed mb-4"></p>
-        <button onclick="resetState()" class="bg-black text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition">Try Again</button>
+        <h2 class="font-bold text-red-800 text-lg mb-2">Could Not Start Verification</h2>
+        <p id="error-detail" class="text-red-600 text-sm leading-relaxed mb-5"></p>
+        <div class="flex gap-3 justify-center flex-wrap">
+          <button onclick="resetState()"
+            class="bg-black text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition">
+            Try Again
+          </button>
+          <a href="mailto:info@neftoiltrading.com"
+            class="border border-black/10 px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-100 transition">
+            Contact Support
+          </a>
+        </div>
       </div>
     </div>
 
   </main>
 
   <script>
-    // ════════════════════════════════════════════════════════════
-    //  DIDIT CONFIGURATION
-    //  !! Fill these in after following DIDIT-SETUP-GUIDE.txt !!
-    //
-    //  Get your keys at: https://business.didit.me
-    //  → Settings → API Keys → copy API Key
-    //  → Workflows → create KYC workflow → copy Workflow ID
-    // ════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  DIDIT CREDENTIALS — NEFT OIL TRADING
+    // ═══════════════════════════════════════════
+    const DIDIT_APP_ID      = 'fa0d3982-d35a-4b30-af69-3f87a4bd7e4e';
     const DIDIT_API_KEY     = '_pJeO5VOTlx4qv7TJm_N20H1B6SiRCDl2ZtSOzC17LE';
-    const DIDIT_WORKFLOW_ID = '22286867-06cc-4e4a-8a83-34412eb01889';
-    // ════════════════════════════════════════════════════════════
-
-    const DIDIT_SESSION_URL = 'https://verification.didit.me/v3/session/';
+    // The Workflow ID = your App ID for UniLink iframe
+    const DIDIT_SESSION_URL = 'https://verify.didit.me/u/IihoZwbMTkqKgzRBLrAYiQ';
+    // ═══════════════════════════════════════════
 
     const user = JSON.parse(sessionStorage.getItem('neft_user') || 'null');
     if (!user) window.location.href = 'login.html';
-
-    // Show config warning if not set up
-    if (DIDIT_API_KEY === '_pJeO5VOTlx4qv7TJm_N20H1B6SiRCDl2ZtSOzC17LE') {
-      document.getElementById('config-warning').classList.remove('hidden');
-    }
 
     function showState(id) {
       ['state-start','state-loading','state-iframe','state-success','state-error']
@@ -210,82 +248,83 @@
     function resetState() { showState('state-start'); }
 
     async function startVerification() {
-      if (DIDIT_API_KEY === '_pJeO5VOTlx4qv7TJm_N20H1B6SiRCDl2ZtSOzC17LE') {
-        alert('Didit is not configured yet. Please follow the DIDIT-SETUP-GUIDE.txt and add your API key and Workflow ID to kyc.html.');
-        return;
-      }
-
       showState('state-loading');
 
       try {
-        // Build callback URL — returns user to this page with ?verified=1
-        const callbackUrl = window.location.origin + window.location.pathname + '?verified=1';
+        const callbackUrl = window.location.href.split('?')[0] + '?verified=1';
 
-        // ── Create Didit verification session ──────────────────
+        // Create verification session via Didit API
         const res = await fetch(DIDIT_SESSION_URL, {
           method: 'POST',
           headers: {
-            'Content-Type':  'application/json',
-            'x-api-key':     DIDIT_API_KEY
+            'Content-Type': 'application/json',
+            'x-api-key':    DIDIT_API_KEY
           },
           body: JSON.stringify({
-            workflow_id:  DIDIT_WORKFLOW_ID,
+            workflow_id:  DIDIT_APP_ID,
             callback:     callbackUrl,
-            vendor_data:  user.email || user.name || 'neft-client',
+            vendor_data:  user.email || user.name,
             contact_details: {
               email:                    user.email || '',
               email_lang:               'en',
               send_notification_emails: true
             },
             metadata: {
-              company:  user.company || '',
-              portal:   'NEFT Oil Trading Client Portal'
+              client_name:    user.name    || '',
+              client_company: user.company || '',
+              portal:         'NEFT Oil Trading — Client Portal'
             }
           })
         });
 
+        // Handle non-200 responses
         if (!res.ok) {
-          const errText = await res.text();
-          throw new Error(`Didit API error ${res.status}: ${errText}`);
+          const body = await res.text();
+          throw new Error(`Didit API responded with ${res.status}. ${body}`);
         }
 
         const session = await res.json();
 
         if (!session.verification_url) {
-          throw new Error('No verification URL returned from Didit. Check your API key and Workflow ID.');
+          throw new Error('Didit did not return a verification URL. Please check your Workflow ID in the Didit Console.');
         }
 
-        // ── Load Didit iframe ───────────────────────────────────
+        // Store session reference
+        sessionStorage.setItem('neft_didit_session', session.session_id || '');
+
+        // Load into iframe
         document.getElementById('didit-frame').src = session.verification_url;
         showState('state-iframe');
 
-        // Store session ID for reference
-        sessionStorage.setItem('neft_didit_session', session.session_id || '');
-
-        // Listen for postMessage from Didit iframe
-        window.addEventListener('message', function(event) {
-          if (!event.origin.includes('didit.me')) return;
-          const data = event.data;
-          if (data && (data.status === 'Approved' || data.status === 'In Review' || data.type === 'VERIFICATION_COMPLETE')) {
-            onVerificationComplete();
+        // Listen for completion message from Didit iframe
+        window.addEventListener('message', function handler(event) {
+          if (typeof event.data !== 'object') return;
+          const { status, type } = event.data;
+          const done = ['Approved','In Review','Declined','Abandoned']
+                         .includes(status) || type === 'VERIFICATION_COMPLETE';
+          if (done) {
+            window.removeEventListener('message', handler);
+            onVerificationComplete(status);
           }
         });
 
       } catch (err) {
         console.error('Didit error:', err);
-        document.getElementById('error-detail').textContent = err.message || 'Could not connect to the verification service. Please check your internet connection and try again.';
+        document.getElementById('error-detail').textContent =
+          err.message || 'Could not connect to the verification service. Please check your internet connection and try again.';
         showState('state-error');
       }
     }
 
-    function onVerificationComplete() {
+    function onVerificationComplete(status) {
       sessionStorage.setItem('neft_kyc', '1');
+      sessionStorage.setItem('neft_kyc_status', status || 'Submitted');
       showState('state-success');
     }
 
-    // Handle callback redirect (?verified=1)
+    // Handle return redirect after Didit callback
     if (new URLSearchParams(window.location.search).get('verified') === '1') {
-      onVerificationComplete();
+      onVerificationComplete('Submitted');
     }
 
     function doLogout() {
