@@ -1,14 +1,8 @@
-// ════════════════════════════════════════════════════════
-//  NEFT OIL TRADING — Firebase Configuration
-//  !! REPLACE THESE VALUES with your own Firebase project !!
-//  Follow FIREBASE-SETUP-GUIDE.txt to get these values
-// ════════════════════════════════════════════════════════
-
-const FIREBASE_CONFIG = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID"
+const firebaseConfig = {
+  apiKey: "AIzaSyDKTnzS5gK1AIX2aar4hmpUYWSnxOgRJVU",
+  authDomain: "neft-oil-trading-portal-4ba05.firebaseapp.com",
+  projectId: "neft-oil-trading-portal-4ba05",
+  storageBucket: "neft-oil-trading-portal-4ba05.firebasestorage.app",
+  messagingSenderId: "374990645527",
+  appId: "1:374990645527:web:2b1889582002d9d2aeaf52"
 };
